@@ -1,0 +1,165 @@
+DDRAGON_BASE_URL = 'https://ddragon.leagueoflegends.com/cdn/'
+DDRAGON_VERSION = '15.15.1'
+
+async def get_summoner_name_by_puuid(connection, puuid):
+    if puuid == '':
+        return 'boot'
+    summoner_response = await connection.request('GET', f'/lol-summoner/v2/summoners/puuid/{puuid}')
+    summoner = await summoner_response.json()
+    return summoner.get('gameName')
+
+async def team_add_names(connection, team):
+    new_team = []  # Initialize a new list to store the updated team
+
+    for player in team:
+        summoner_name = await get_summoner_name_by_puuid(connection, player['puuid'])
+        player['gameName'] = summoner_name
+        new_team.append(player)
+
+    return new_team
+
+
+def id_to_url(id, type):
+    # champion icon, splashart?, skin splashart, summoner spells
+    if id <= 0 or id == 18446744073709551615:
+        return ''
+    id = str(id)
+    if type=='summoner':
+        name = summoners_lookup[id]
+        url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/img/spell/{name}.png'
+        return url
+        
+        
+    if type=='icon':
+        name = champions_lookup[id]
+        url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/img/champion/{name}.png'
+        return url
+    
+    
+    if type=='splash':
+        skin = 0
+        if len(id) > 3:
+            skin = id[-3:]
+            id = id[:-3]
+            
+        skin = str(int(skin))
+        
+        name = champions_lookup[id]
+        url = f'{DDRAGON_BASE_URL}img/champion/splash/{name}_{skin}.jpg'
+        return url
+
+
+    if type=='loading':
+        skin = 0
+        if len(id) > 3:
+            skin = id[-3:]
+            id = id[:-3]
+            
+        skin = str(int(skin))
+        
+        name = champions_lookup[id]
+        url = f'{DDRAGON_BASE_URL}img/champion/loading/{name}_{skin}.jpg'
+        return url
+
+
+
+import requests
+import os
+
+def download_json(url, folder, filename):
+    try:
+        # Make a GET request to fetch the raw JSON data
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an error for bad responses
+        
+        # Create the folder if it doesn't exist
+        os.makedirs(folder, exist_ok=True)
+
+        # Define the full path to save the JSON file
+        file_path = os.path.join(folder, filename)
+
+        # Write the JSON data to a file
+        with open(file_path, 'w') as json_file:
+            json_file.write(response.text)
+
+        return json_to_lookup(response.json()['data'], 'key')
+        
+    except requests.exceptions.RequestException as e:
+        print(f"An error occurred while downloading the JSON: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+# Example usage:
+# download_json('https://api.example.com/data', 'my_folder', 'data.json')
+    
+def startup_download():
+    # Get the summoner data
+    champion = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/champion.json'
+    summoner = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/summoner.json'
+    download_json(champion, '.', 'champion.json')
+    download_json(summoner, '.', 'summoner.json')
+
+def json_to_lookup(data, data_key):
+    lookup_table = {}
+    for item_key, item in data.items():
+        key = item.get(data_key)
+        if key:
+            lookup_table[key] = item_key
+    return lookup_table
+
+
+# champion = https://ddragon.leagueoflegends.com/cdn/15.15.1/data/en_US/champion.json
+# summoner = f'{DDRAGON_BASE_URL}{version}/data/en_US/summoner.json'
+# https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Aatrox_0.jpg
+# https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Aatrox_0.jpg
+
+
+def team_to_url(team):
+    new_team = []
+    for player in team:
+        championId = player['championId']
+        championPickIntent = player['championPickIntent']
+        selectedSkinId = player['selectedSkinId']
+        spell1Id = player['spell1Id']
+        spell2Id = player['spell2Id']
+        puuid = player['puuid']
+
+        player['championIdIcon'] = id_to_url(championId, 'icon')
+        player['championPickIntentIcon'] = id_to_url(championPickIntent, 'icon')
+        
+        player['championIdSplash'] = id_to_url(championId, 'splash')
+        player['championPickIntentSplash'] = id_to_url(championPickIntent, 'splash')
+        player['championIdSkinSplash'] = id_to_url(selectedSkinId, 'splash')
+
+        player['championIdLoading'] = id_to_url(championId, 'loading')
+        player['championPickIntentLoading'] = id_to_url(championPickIntent, 'loading')
+        player['championIdSkinLoading'] = id_to_url(selectedSkinId, 'loading')
+
+        player['summonerSpell1Icon'] = id_to_url(spell1Id, 'summoner')
+        player['summonerSpell2Icon'] = id_to_url(spell2Id, 'summoner')
+        new_team.append(player)
+
+    return new_team
+
+
+def bans_to_url(bans):
+    ban_objects = []
+    
+    for ban in bans:
+        ban_object = {}
+        ban_object['championId'] = ban
+        ban_object['championIdIcon'] = id_to_url(ban, 'icon')
+        ban_object['championIdSplash'] = id_to_url(ban, 'splash')
+        ban_object['championIdLoading'] = id_to_url(ban, 'loading')
+        ban_objects.append(ban_object)
+
+    return ban_objects
+
+
+champions_url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/champion.json'
+summoners_url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/summoner.json'
+    
+summoners_lookup = download_json(summoners_url, '.', 'summoner.json')
+champions_lookup = download_json(champions_url, '.', 'champion.json')
+puuid_lookup={}
+

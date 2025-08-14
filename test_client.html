@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League Champion Select WebSocket Client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1e2328;
+            color: #f0e6d2;
+        }
+        .container {
+            background-color: #3c3c41;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        .connected { background-color: #4caf50; }
+        .disconnected { background-color: #f44336; }
+        .messages {
+            height: 400px;
+            overflow-y: auto;
+            background-color: #1e2328;
+            border: 1px solid #463714;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #463714;
+            border-radius: 3px;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        button {
+            background-color: #c8aa6e;
+            color: #1e2328;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #f0e6d2;
+        }
+        button:disabled {
+            background-color: #5bc0de;
+            cursor: not-allowed;
+        }
+        .api-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .api-links a {
+            color: #c8aa6e;
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: #463714;
+            border-radius: 3px;
+        }
+        .api-links a:hover {
+            background-color: #c8aa6e;
+            color: #1e2328;
+        }
+    </style>
+</head>
+<body>
+    <h1>League of Legends Champion Select Monitor</h1>
+    
+    <div class="container">
+        <h2>WebSocket Connection</h2>
+        <div id="status" class="status disconnected">Disconnected</div>
+        <button id="connectBtn" onclick="connect()">Connect</button>
+        <button id="disconnectBtn" onclick="disconnect()" disabled>Disconnect</button>
+        <button onclick="clearMessages()">Clear Messages</button>
+    </div>
+
+    <div class="container">
+        <h2>Replay Controls</h2>
+        <div style="margin-bottom: 10px;">
+            <input type="text" id="replayFile" placeholder="replay filename (e.g., record2025-08-14_11-24-09.json)" style="width: 300px; padding: 5px;">
+            <button onclick="loadReplay()">Load Replay</button>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <button onclick="startReplay()">Start Replay</button>
+            <button onclick="stopReplay()">Stop Replay</button>
+            <button onclick="getReplayStatus()">Get Status</button>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Speed: </label>
+            <input type="number" id="replaySpeed" value="1.0" min="0.1" max="10" step="0.1" style="width: 80px;">
+            <button onclick="setReplaySpeed()">Set Speed</button>
+        </div>
+        <div id="replayStatus" style="background-color: #463714; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 12px; margin-top: 10px;">
+            No replay loaded
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>REST API Endpoints</h2>
+        <div class="api-links">
+            <a href="http://localhost:8000/docs" target="_blank">API Documentation</a>
+            <a href="http://localhost:8000/session/current" target="_blank">Current Session</a>
+            <a href="http://localhost:8000/session/status" target="_blank">Session Status</a>
+            <a href="http://localhost:8000/teams/my" target="_blank">My Team</a>
+            <a href="http://localhost:8000/teams/their" target="_blank">Their Team</a>
+            <a href="http://localhost:8000/bans" target="_blank">Bans</a>
+            <a href="http://localhost:8000/health" target="_blank">Health Check</a>
+            <a href="http://localhost:8000/replay/status" target="_blank">Replay Status</a>
+            <a href="http://localhost:8000/replay/events" target="_blank">Replay Events</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Live Messages</h2>
+        <div id="messages" class="messages"></div>
+    </div>
+
+    <script>
+        let socket = null;
+        const messagesDiv = document.getElementById('messages');
+        const statusDiv = document.getElementById('status');
+        const connectBtn = document.getElementById('connectBtn');
+        const disconnectBtn = document.getElementById('disconnectBtn');
+
+        function updateStatus(connected) {
+            if (connected) {
+                statusDiv.textContent = 'Connected to WebSocket';
+                statusDiv.className = 'status connected';
+                connectBtn.disabled = true;
+                disconnectBtn.disabled = false;
+            } else {
+                statusDiv.textContent = 'Disconnected from WebSocket';
+                statusDiv.className = 'status disconnected';
+                connectBtn.disabled = false;
+                disconnectBtn.disabled = true;
+            }
+        }
+
+        function addMessage(message, type = 'info') {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message';
+            
+            const timestamp = new Date().toLocaleTimeString();
+            messageDiv.innerHTML = `
+                <strong>[${timestamp}]</strong> ${message}
+            `;
+            
+            messagesDiv.appendChild(messageDiv);
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+
+        function connect() {
+            if (socket) return;
+
+            socket = new WebSocket('ws://localhost:8765');
+            
+            socket.onopen = function(event) {
+                updateStatus(true);
+                addMessage('Connected to WebSocket server');
+            };
+            
+            socket.onmessage = function(event) {
+                try {
+                    const data = JSON.parse(event.data);
+                    addMessage(`<pre>${JSON.stringify(data, null, 2)}</pre>`);
+                } catch (e) {
+                    addMessage(`Received: ${event.data}`);
+                }
+            };
+            
+            socket.onclose = function(event) {
+                updateStatus(false);
+                addMessage('Disconnected from WebSocket server');
+                socket = null;
+            };
+            
+            socket.onerror = function(error) {
+                addMessage(`WebSocket error: ${error}`);
+                console.error('WebSocket error:', error);
+            };
+        }
+
+        function disconnect() {
+            if (socket) {
+                socket.close();
+                socket = null;
+            }
+        }
+
+        function clearMessages() {
+            messagesDiv.innerHTML = '';
+        }
+
+        // Auto-connect on page load
+        window.addEventListener('load', connect);
+
+        // Replay control functions
+        async function loadReplay() {
+            const filename = document.getElementById('replayFile').value;
+            if (!filename) {
+                alert('Please enter a filename');
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8000/replay/load', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ filename: filename })
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    addMessage(`✅ ${result.message}`);
+                    updateReplayStatus();
+                } else {
+                    addMessage(`❌ Error loading replay: ${result.detail}`);
+                }
+            } catch (error) {
+                addMessage(`❌ Error loading replay: ${error.message}`);
+            }
+        }
+
+        async function startReplay() {
+            const speed = parseFloat(document.getElementById('replaySpeed').value) || 1.0;
+            const filename = document.getElementById('replayFile').value;
+
+            try {
+                const response = await fetch('http://localhost:8000/replay/play', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        filename: filename,
+                        speed: speed 
+                    })
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    addMessage(`▶️ ${result.message} at ${result.speed}x speed`);
+                    updateReplayStatus();
+                } else {
+                    addMessage(`❌ Error starting replay: ${result.detail}`);
+                }
+            } catch (error) {
+                addMessage(`❌ Error starting replay: ${error.message}`);
+            }
+        }
+
+        async function stopReplay() {
+            try {
+                const response = await fetch('http://localhost:8000/replay/stop', {
+                    method: 'POST'
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    addMessage(`⏹️ ${result.message}`);
+                    updateReplayStatus();
+                } else {
+                    addMessage(`❌ Error stopping replay: ${result.detail}`);
+                }
+            } catch (error) {
+                addMessage(`❌ Error stopping replay: ${error.message}`);
+            }
+        }
+
+        async function setReplaySpeed() {
+            const speed = parseFloat(document.getElementById('replaySpeed').value) || 1.0;
+
+            try {
+                const response = await fetch('http://localhost:8000/replay/speed', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ speed: speed })
+                });
+                
+                const result = await response.json();
+                if (response.ok) {
+                    addMessage(`⚡ ${result.message}`);
+                    updateReplayStatus();
+                } else {
+                    addMessage(`❌ Error setting speed: ${result.detail}`);
+                }
+            } catch (error) {
+                addMessage(`❌ Error setting speed: ${error.message}`);
+            }
+        }
+
+        async function getReplayStatus() {
+            updateReplayStatus();
+        }
+
+        async function updateReplayStatus() {
+            try {
+                const response = await fetch('http://localhost:8000/replay/status');
+                const status = await response.json();
+                
+                if (response.ok) {
+                    const statusDiv = document.getElementById('replayStatus');
+                    statusDiv.innerHTML = `
+                        <strong>Replay Status:</strong><br>
+                        Events Loaded: ${status.events_loaded ? 'Yes' : 'No'}<br>
+                        Total Events: ${status.total_events}<br>
+                        Current Index: ${status.current_index}<br>
+                        Is Playing: ${status.is_playing ? 'Yes' : 'No'}<br>
+                        Speed: ${status.replay_speed}x
+                    `;
+                } else {
+                    document.getElementById('replayStatus').innerHTML = 'Error getting replay status';
+                }
+            } catch (error) {
+                document.getElementById('replayStatus').innerHTML = `Error: ${error.message}`;
+            }
+        }
+
+        // Update replay status every 2 seconds
+        setInterval(updateReplayStatus, 2000);
+    </script>
+</body>
+</html>

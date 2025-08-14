@@ -1,0 +1,7 @@
+.git
+__pycache__
+record*
+champion.json
+griddump.json
+summoner.json
+events
