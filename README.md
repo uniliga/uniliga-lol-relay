@@ -141,6 +141,29 @@ Die relevantesten Punkte der Pick Ban Data:
 
 ```
 
+## Fearless
+Enthält alle Champions, die vorher gepickt wurden. Wird in fearless.json gespeichert, kann gelöscht werden wenn ein neues BoX startet
+```json
+{
+    ...,
+    "fearless": [
+        {
+            "championId": 1,
+            "championIdIcon": "https://ddragon.leagueoflegends.com/cdn/15.15.1/img/champion/Annie.png",
+            "championIdSplash": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Annie_0.jpg",
+            "championIdLoading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Annie_0.jpg"
+        },
+        {
+            "championId": 53,
+            "championIdIcon": "https://ddragon.leagueoflegends.com/cdn/15.15.1/img/champion/Blitzcrank.png",
+            "championIdSplash": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Blitzcrank_0.jpg",
+            "championIdLoading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Blitzcrank_0.jpg"
+        },
+        ...
+    ]
+}
+```
+
 ## Examples
 In `_recordtest.json` befindet sich der TR Testpickban.
 

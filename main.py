@@ -1,4 +1,5 @@
 import asyncio
+import os
 import uvicorn
 from websocket_server import ws_server
 from api_server import app, set_replay_system
@@ -92,7 +93,30 @@ def start_relay():
             if data.get('theirTeam'):
                 theirTeam = await team_add_names(connection, data.get('theirTeam'))
                 data['theirTeam'] = theirTeam
-                
+            
+            # Fearless
+            fearless = []
+            if os.path.exists('fearless.json'):
+                with open('fearless.json', 'r', encoding='utf-8') as file:
+                    fearless = json.load(file)
+            print(fearless)
+            
+            champions = get_all_champions(data.get('actions'))
+            print(champions)
+            
+            combined_champions = champions + fearless
+            combined_champions_unique = fearless_unique(combined_champions)
+            
+            
+            with open('fearless.json', 'w', encoding='utf-8') as file:
+                json.dump(combined_champions_unique, file, indent=2, ensure_ascii=False)
+            
+            
+            fearless_wo = fearless_remove_current(combined_champions_unique, champions)
+            print(fearless_wo)
+            data['fearless'] = fearless_wo
+            
+            
             # Save raw data to files
             with open(f'record{record_timestamp}.json', 'a') as file:
                 file.write(json.dumps({'data': data, 'eventType': 'UPDATE', 'uri': '/lol-champ-select/v1/session' }))
@@ -108,6 +132,10 @@ def start_relay():
                 theirTeam = team_to_url(data.get('theirTeam'))
                 data['theirTeam'] = theirTeam
 
+            
+            
+            
+            
             # Handle bans
             if data.get('bans'):
                 if data['bans'].get('myTeamBans'):
@@ -132,6 +160,12 @@ def start_relay():
             except Exception as e:
                 print(f"Error queuing data: {e}")
 
+        
+        # @connector.ws.register('/idk', event_types=('UPDATE',))
+        # async def post_game():
+        #     pass
+        
+        
         @connector.close
         async def disconnect(connection):
             print('LCU relay finished')

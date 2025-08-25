@@ -156,6 +156,59 @@ def bans_to_url(bans):
     return ban_objects
 
 
+def get_all_champions(actions):
+    champions = []
+    for action in actions:
+        for sub_action in action:
+            if sub_action.get('type') == 'pick' and sub_action.get('completed'):
+                champion = sub_action.get('championId')
+                if champion and champion > 0:
+                    icon = id_to_url(champion, 'icon')
+                    splash = id_to_url(champion, 'splash')
+                    loading = id_to_url(champion, 'loading')
+                    
+                    champion_obj = {
+                        "championId": champion,
+                        "championIdIcon": icon,
+                        "championIdSplash": splash,
+                        "championIdLoading": loading,
+                    }
+                    champions.append(champion_obj)
+            
+        
+    return champions
+    
+def fearless_unique(champions):
+    seen = []
+    unique = []
+    for champion in champions:
+        championId = champion.get('championId')
+        if championId in seen:
+            continue
+        
+        unique.append(champion)
+        seen.append(championId)
+        
+    return unique
+
+
+def fearless_remove_current(all_champs, current):
+    fearless = []
+    current_ids = []
+    for champion in current:
+        championId = champion.get("championId")
+        current_ids.append(championId)
+        
+    for champion in all_champs:
+        if champion.get('championId') in current_ids:
+            continue
+        
+        fearless.append(champion)
+        
+    return fearless
+        
+
+
 champions_url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/champion.json'
 summoners_url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/summoner.json'
     
