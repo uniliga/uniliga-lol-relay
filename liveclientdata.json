@@ -1,0 +1,2043 @@
+{
+  "data": {
+    "activePlayer": {
+      "error": "Spectator mode doesn't currently support this feature"
+    },
+    "allPlayers": [
+      {
+        "championName": "Illaoi",
+        "isBot": false,
+        "isDead": true,
+        "items": [
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Iceborn Gauntlet",
+            "itemID": 6662,
+            "price": 800,
+            "rawDescription": "GeneratedTip_Item_6662_Description",
+            "rawDisplayName": "Item_6662_Name",
+            "slot": 0
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Black Cleaver",
+            "itemID": 3071,
+            "price": 225,
+            "rawDescription": "GeneratedTip_Item_3071_Description",
+            "rawDisplayName": "Item_3071_Name",
+            "slot": 1
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Armored Advance",
+            "itemID": 3174,
+            "price": 500,
+            "rawDescription": "GeneratedTip_Item_3174_Description",
+            "rawDisplayName": "Item_3174_Name",
+            "slot": 2
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Sundered Sky",
+            "itemID": 6610,
+            "price": 500,
+            "rawDescription": "GeneratedTip_Item_6610_Description",
+            "rawDisplayName": "Item_6610_Name",
+            "slot": 3
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Bramble Vest",
+            "itemID": 3076,
+            "price": 200,
+            "rawDescription": "GeneratedTip_Item_3076_Description",
+            "rawDisplayName": "Item_3076_Name",
+            "slot": 4
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Chain Vest",
+            "itemID": 1031,
+            "price": 500,
+            "rawDescription": "GeneratedTip_Item_1031_Description",
+            "rawDisplayName": "Item_1031_Name",
+            "slot": 5
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Stealth Ward",
+            "itemID": 3340,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3340_Description",
+            "rawDisplayName": "Item_3340_Name",
+            "slot": 6
+          }
+        ],
+        "level": 17,
+        "position": "TOP",
+        "rawChampionName": "game_character_displayname_Illaoi",
+        "rawSkinName": "game_character_skin_displayname_Illaoi_0",
+        "respawnTimer": 24.31493377685547,
+        "riotId": "JustPaInKiLLer23#EUW",
+        "riotIdGameName": "JustPaInKiLLer23",
+        "riotIdTagLine": "EUW",
+        "runes": {
+          "keystone": {
+            "displayName": "Conqueror",
+            "id": 8010,
+            "rawDescription": "perk_tooltip_Conqueror",
+            "rawDisplayName": "perk_displayname_Conqueror"
+          },
+          "primaryRuneTree": {
+            "displayName": "Precision",
+            "id": 8000,
+            "rawDescription": "perkstyle_tooltip_7201",
+            "rawDisplayName": "perkstyle_displayname_7201"
+          },
+          "secondaryRuneTree": {
+            "displayName": "Sorcery",
+            "id": 8200,
+            "rawDescription": "perkstyle_tooltip_7202",
+            "rawDisplayName": "perkstyle_displayname_7202"
+          }
+        },
+        "scores": {
+          "assists": 6,
+          "creepScore": 240,
+          "deaths": 7,
+          "kills": 7,
+          "wardScore": 22.405691146850586
+        },
+        "screenPositionBottom": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "screenPositionCenter": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "skinID": 0,
+        "skinName": "",
+        "summonerName": "JustPaInKiLLer23#EUW",
+        "summonerSpells": {
+          "summonerSpellOne": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+          },
+          "summonerSpellTwo": {
+            "displayName": "Unleashed Teleport",
+            "rawDescription": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_DisplayName"
+          }
+        },
+        "team": "ORDER"
+      },
+      {
+        "championName": "Viego",
+        "isBot": false,
+        "isDead": false,
+        "items": [
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "The Collector",
+            "itemID": 6676,
+            "price": 525,
+            "rawDescription": "GeneratedTip_Item_6676_Description",
+            "rawDisplayName": "Item_6676_Name",
+            "slot": 0
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Trinity Force",
+            "itemID": 3078,
+            "price": 133,
+            "rawDescription": "GeneratedTip_Item_3078_Description",
+            "rawDisplayName": "Item_3078_Name",
+            "slot": 1
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Immortal Shieldbow",
+            "itemID": 6673,
+            "price": 825,
+            "rawDescription": "GeneratedTip_Item_6673_Description",
+            "rawDisplayName": "Item_6673_Name",
+            "slot": 2
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Chainlaced Crushers",
+            "itemID": 3173,
+            "price": 500,
+            "rawDescription": "GeneratedTip_Item_3173_Description",
+            "rawDisplayName": "Item_3173_Name",
+            "slot": 3
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Executioner's Calling",
+            "itemID": 3123,
+            "price": 450,
+            "rawDescription": "GeneratedTip_Item_3123_Description",
+            "rawDisplayName": "Item_3123_Name",
+            "slot": 4
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Last Whisper",
+            "itemID": 3035,
+            "price": 750,
+            "rawDescription": "GeneratedTip_Item_3035_Description",
+            "rawDisplayName": "Item_3035_Name",
+            "slot": 5
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Oracle Lens",
+            "itemID": 3364,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3364_Description",
+            "rawDisplayName": "Item_3364_Name",
+            "slot": 6
+          }
+        ],
+        "level": 17,
+        "position": "JUNGLE",
+        "rawChampionName": "game_character_displayname_Viego",
+        "rawSkinName": "game_character_skin_displayname_Viego_30",
+        "respawnTimer": 0,
+        "riotId": "Gooch Boy #EUW",
+        "riotIdGameName": "Gooch Boy ",
+        "riotIdTagLine": "EUW",
+        "runes": {
+          "keystone": {
+            "displayName": "Conqueror",
+            "id": 8010,
+            "rawDescription": "perk_tooltip_Conqueror",
+            "rawDisplayName": "perk_displayname_Conqueror"
+          },
+          "primaryRuneTree": {
+            "displayName": "Precision",
+            "id": 8000,
+            "rawDescription": "perkstyle_tooltip_7201",
+            "rawDisplayName": "perkstyle_displayname_7201"
+          },
+          "secondaryRuneTree": {
+            "displayName": "Inspiration",
+            "id": 8300,
+            "rawDescription": "perkstyle_tooltip_7203",
+            "rawDisplayName": "perkstyle_displayname_7203"
+          }
+        },
+        "scores": {
+          "assists": 11,
+          "creepScore": 180,
+          "deaths": 3,
+          "kills": 11,
+          "wardScore": 24.064098358154297
+        },
+        "screenPositionBottom": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "screenPositionCenter": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "skinID": 30,
+        "skinName": "Soul Fighter Viego",
+        "summonerName": "Gooch Boy #EUW",
+        "summonerSpells": {
+          "summonerSpellOne": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+          },
+          "summonerSpellTwo": {
+            "displayName": "Primal Smite",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerSmiteAvatarUtility_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerSmiteAvatarUtility_DisplayName"
+          }
+        },
+        "team": "ORDER"
+      },
+      {
+        "championName": "Kassadin",
+        "isBot": false,
+        "isDead": false,
+        "items": [
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Zhonya's Hourglass",
+            "itemID": 3157,
+            "price": 450,
+            "rawDescription": "GeneratedTip_Item_3157_Description",
+            "rawDisplayName": "Item_3157_Name",
+            "slot": 0
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Rod of Ages",
+            "itemID": 6657,
+            "price": 450,
+            "rawDescription": "GeneratedTip_Item_6657_Description",
+            "rawDisplayName": "Item_6657_Name",
+            "slot": 1
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Seraph's Embrace",
+            "itemID": 3040,
+            "price": 2900,
+            "rawDescription": "GeneratedTip_Item_3040_Description",
+            "rawDisplayName": "Item_3040_Name",
+            "slot": 2
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Malignance",
+            "itemID": 3118,
+            "price": 650,
+            "rawDescription": "GeneratedTip_Item_3118_Description",
+            "rawDisplayName": "Item_3118_Name",
+            "slot": 3
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Spellslinger's Shoes",
+            "itemID": 3175,
+            "price": 500,
+            "rawDescription": "GeneratedTip_Item_3175_Description",
+            "rawDisplayName": "Item_3175_Name",
+            "slot": 5
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Farsight Alteration",
+            "itemID": 3363,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3363_Description",
+            "rawDisplayName": "Item_3363_Name",
+            "slot": 6
+          }
+        ],
+        "level": 17,
+        "position": "MIDDLE",
+        "rawChampionName": "game_character_displayname_Kassadin",
+        "rawSkinName": "game_character_skin_displayname_Kassadin_14",
+        "respawnTimer": 0,
+        "riotId": "Artayr#EUW",
+        "riotIdGameName": "Artayr",
+        "riotIdTagLine": "EUW",
+        "runes": {
+          "keystone": {
+            "displayName": "Electrocute",
+            "id": 8112,
+            "rawDescription": "perk_tooltip_Electrocute",
+            "rawDisplayName": "perk_displayname_Electrocute"
+          },
+          "primaryRuneTree": {
+            "displayName": "Domination",
+            "id": 8100,
+            "rawDescription": "perkstyle_tooltip_7200",
+            "rawDisplayName": "perkstyle_displayname_7200"
+          },
+          "secondaryRuneTree": {
+            "displayName": "Resolve",
+            "id": 8400,
+            "rawDescription": "perkstyle_tooltip_7204",
+            "rawDisplayName": "perkstyle_displayname_7204"
+          }
+        },
+        "scores": {
+          "assists": 11,
+          "creepScore": 210,
+          "deaths": 1,
+          "kills": 7,
+          "wardScore": 24.297100067138672
+        },
+        "screenPositionBottom": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "screenPositionCenter": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "skinID": 14,
+        "skinName": "Hextech Kassadin",
+        "summonerName": "Artayr#EUW",
+        "summonerSpells": {
+          "summonerSpellOne": {
+            "displayName": "Unleashed Teleport",
+            "rawDescription": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_DisplayName"
+          },
+          "summonerSpellTwo": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+          }
+        },
+        "team": "ORDER"
+      },
+      {
+        "championName": "Jinx",
+        "isBot": false,
+        "isDead": false,
+        "items": [
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Infinity Edge",
+            "itemID": 3031,
+            "price": 675,
+            "rawDescription": "GeneratedTip_Item_3031_Description",
+            "rawDisplayName": "Item_3031_Name",
+            "slot": 0
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Yun Tal Wildarrows",
+            "itemID": 3032,
+            "price": 750,
+            "rawDescription": "GeneratedTip_Item_3032_Description",
+            "rawDisplayName": "Item_3032_Name",
+            "slot": 1
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Gunmetal Greaves",
+            "itemID": 3172,
+            "price": 500,
+            "rawDescription": "GeneratedTip_Item_3172_Description",
+            "rawDisplayName": "Item_3172_Name",
+            "slot": 2
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Cloak of Agility",
+            "itemID": 1018,
+            "price": 600,
+            "rawDescription": "GeneratedTip_Item_1018_Description",
+            "rawDisplayName": "Item_1018_Name",
+            "slot": 3
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Executioner's Calling",
+            "itemID": 3123,
+            "price": 450,
+            "rawDescription": "GeneratedTip_Item_3123_Description",
+            "rawDisplayName": "Item_3123_Name",
+            "slot": 4
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Farsight Alteration",
+            "itemID": 3363,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3363_Description",
+            "rawDisplayName": "Item_3363_Name",
+            "slot": 6
+          }
+        ],
+        "level": 14,
+        "position": "BOTTOM",
+        "rawChampionName": "game_character_displayname_Jinx",
+        "rawSkinName": "game_character_skin_displayname_Jinx_20",
+        "respawnTimer": 0,
+        "riotId": "Hunterzombie17#EUW",
+        "riotIdGameName": "Hunterzombie17",
+        "riotIdTagLine": "EUW",
+        "runes": {
+          "keystone": {
+            "displayName": "Lethal Tempo",
+            "id": 8008,
+            "rawDescription": "perk_tooltip_LethalTempo",
+            "rawDisplayName": "perk_displayname_LethalTempo"
+          },
+          "primaryRuneTree": {
+            "displayName": "Precision",
+            "id": 8000,
+            "rawDescription": "perkstyle_tooltip_7201",
+            "rawDisplayName": "perkstyle_displayname_7201"
+          },
+          "secondaryRuneTree": {
+            "displayName": "Sorcery",
+            "id": 8200,
+            "rawDescription": "perkstyle_tooltip_7202",
+            "rawDisplayName": "perkstyle_displayname_7202"
+          }
+        },
+        "scores": {
+          "assists": 12,
+          "creepScore": 190,
+          "deaths": 6,
+          "kills": 5,
+          "wardScore": 15.21408748626709
+        },
+        "screenPositionBottom": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "screenPositionCenter": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "skinID": 20,
+        "skinName": "PROJECT: Jinx",
+        "summonerName": "Hunterzombie17#EUW",
+        "summonerSpells": {
+          "summonerSpellOne": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+          },
+          "summonerSpellTwo": {
+            "displayName": "Barrier",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerBarrier_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerBarrier_DisplayName"
+          }
+        },
+        "team": "ORDER"
+      },
+      {
+        "championName": "Karma",
+        "isBot": false,
+        "isDead": true,
+        "items": [
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Zaz'Zak's Realmspike",
+            "itemID": 3871,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3871_Description",
+            "rawDisplayName": "Item_3871_Name",
+            "slot": 0
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Locket of the Iron Solari",
+            "itemID": 3190,
+            "price": 700,
+            "rawDescription": "GeneratedTip_Item_3190_Description",
+            "rawDisplayName": "Item_3190_Name",
+            "slot": 1
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Mercury's Treads",
+            "itemID": 3111,
+            "price": 550,
+            "rawDescription": "GeneratedTip_Item_3111_Description",
+            "rawDisplayName": "Item_3111_Name",
+            "slot": 2
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Fimbulwinter",
+            "itemID": 3121,
+            "price": 2400,
+            "rawDescription": "GeneratedTip_Item_3121_Description",
+            "rawDisplayName": "Item_3121_Name",
+            "slot": 3
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Warden's Mail",
+            "itemID": 3082,
+            "price": 400,
+            "rawDescription": "GeneratedTip_Item_3082_Description",
+            "rawDisplayName": "Item_3082_Name",
+            "slot": 4
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Ruby Crystal",
+            "itemID": 1028,
+            "price": 400,
+            "rawDescription": "GeneratedTip_Item_1028_Description",
+            "rawDisplayName": "Item_1028_Name",
+            "slot": 5
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Oracle Lens",
+            "itemID": 3364,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3364_Description",
+            "rawDisplayName": "Item_3364_Name",
+            "slot": 6
+          }
+        ],
+        "level": 13,
+        "position": "UTILITY",
+        "rawChampionName": "game_character_displayname_Karma",
+        "rawSkinName": "game_character_skin_displayname_Karma_0",
+        "respawnTimer": 44.04838562011719,
+        "riotId": "Kulturbanause#EUW",
+        "riotIdGameName": "Kulturbanause",
+        "riotIdTagLine": "EUW",
+        "runes": {
+          "keystone": {
+            "displayName": "Glacial Augment",
+            "id": 8351,
+            "rawDescription": "perk_tooltip_GlacialAugment",
+            "rawDisplayName": "perk_displayname_GlacialAugment"
+          },
+          "primaryRuneTree": {
+            "displayName": "Inspiration",
+            "id": 8300,
+            "rawDescription": "perkstyle_tooltip_7203",
+            "rawDisplayName": "perkstyle_displayname_7203"
+          },
+          "secondaryRuneTree": {
+            "displayName": "Resolve",
+            "id": 8400,
+            "rawDescription": "perkstyle_tooltip_7204",
+            "rawDisplayName": "perkstyle_displayname_7204"
+          }
+        },
+        "scores": {
+          "assists": 16,
+          "creepScore": 30,
+          "deaths": 8,
+          "kills": 3,
+          "wardScore": 64.8942642211914
+        },
+        "screenPositionBottom": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "screenPositionCenter": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "skinID": 0,
+        "skinName": "",
+        "summonerName": "Kulturbanause#EUW",
+        "summonerSpells": {
+          "summonerSpellOne": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+          },
+          "summonerSpellTwo": {
+            "displayName": "Exhaust",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerExhaust_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerExhaust_DisplayName"
+          }
+        },
+        "team": "ORDER"
+      },
+      {
+        "championName": "Darius",
+        "isBot": false,
+        "isDead": false,
+        "items": [
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Death's Dance",
+            "itemID": 6333,
+            "price": 275,
+            "rawDescription": "GeneratedTip_Item_6333_Description",
+            "rawDisplayName": "Item_6333_Name",
+            "slot": 0
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Trinity Force",
+            "itemID": 3078,
+            "price": 133,
+            "rawDescription": "GeneratedTip_Item_3078_Description",
+            "rawDisplayName": "Item_3078_Name",
+            "slot": 1
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Plated Steelcaps",
+            "itemID": 3047,
+            "price": 600,
+            "rawDescription": "GeneratedTip_Item_3047_Description",
+            "rawDisplayName": "Item_3047_Name",
+            "slot": 2
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Sterak's Gage",
+            "itemID": 3053,
+            "price": 775,
+            "rawDescription": "GeneratedTip_Item_3053_Description",
+            "rawDisplayName": "Item_3053_Name",
+            "slot": 3
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Dead Man's Plate",
+            "itemID": 3742,
+            "price": 900,
+            "rawDescription": "GeneratedTip_Item_3742_Description",
+            "rawDisplayName": "Item_3742_Name",
+            "slot": 4
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Bramble Vest",
+            "itemID": 3076,
+            "price": 200,
+            "rawDescription": "GeneratedTip_Item_3076_Description",
+            "rawDisplayName": "Item_3076_Name",
+            "slot": 5
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Stealth Ward",
+            "itemID": 3340,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3340_Description",
+            "rawDisplayName": "Item_3340_Name",
+            "slot": 6
+          }
+        ],
+        "level": 18,
+        "position": "TOP",
+        "rawChampionName": "game_character_displayname_Darius",
+        "rawSkinName": "game_character_skin_displayname_Darius_0",
+        "respawnTimer": 0,
+        "riotId": "AABOSS123#EUW",
+        "riotIdGameName": "AABOSS123",
+        "riotIdTagLine": "EUW",
+        "runes": {
+          "keystone": {
+            "displayName": "Conqueror",
+            "id": 8010,
+            "rawDescription": "perk_tooltip_Conqueror",
+            "rawDisplayName": "perk_displayname_Conqueror"
+          },
+          "primaryRuneTree": {
+            "displayName": "Precision",
+            "id": 8000,
+            "rawDescription": "perkstyle_tooltip_7201",
+            "rawDisplayName": "perkstyle_displayname_7201"
+          },
+          "secondaryRuneTree": {
+            "displayName": "Resolve",
+            "id": 8400,
+            "rawDescription": "perkstyle_tooltip_7204",
+            "rawDisplayName": "perkstyle_displayname_7204"
+          }
+        },
+        "scores": {
+          "assists": 2,
+          "creepScore": 230,
+          "deaths": 5,
+          "kills": 10,
+          "wardScore": 20.61004638671875
+        },
+        "screenPositionBottom": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "screenPositionCenter": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "skinID": 0,
+        "skinName": "",
+        "summonerName": "AABOSS123#EUW",
+        "summonerSpells": {
+          "summonerSpellOne": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+          },
+          "summonerSpellTwo": {
+            "displayName": "Unleashed Teleport",
+            "rawDescription": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_DisplayName"
+          }
+        },
+        "team": "CHAOS"
+      },
+      {
+        "championName": "Volibear",
+        "isBot": false,
+        "isDead": false,
+        "items": [
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Navori Flickerblade",
+            "itemID": 6675,
+            "price": 950,
+            "rawDescription": "GeneratedTip_Item_6675_Description",
+            "rawDisplayName": "Item_6675_Name",
+            "slot": 0
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Cosmic Drive",
+            "itemID": 4629,
+            "price": 450,
+            "rawDescription": "GeneratedTip_Item_4629_Description",
+            "rawDisplayName": "Item_4629_Name",
+            "slot": 1
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Mercury's Treads",
+            "itemID": 3111,
+            "price": 550,
+            "rawDescription": "GeneratedTip_Item_3111_Description",
+            "rawDisplayName": "Item_3111_Name",
+            "slot": 2
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Iceborn Gauntlet",
+            "itemID": 6662,
+            "price": 800,
+            "rawDescription": "GeneratedTip_Item_6662_Description",
+            "rawDisplayName": "Item_6662_Name",
+            "slot": 3
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Bramble Vest",
+            "itemID": 3076,
+            "price": 200,
+            "rawDescription": "GeneratedTip_Item_3076_Description",
+            "rawDisplayName": "Item_3076_Name",
+            "slot": 4
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Cloth Armor",
+            "itemID": 1029,
+            "price": 300,
+            "rawDescription": "GeneratedTip_Item_1029_Description",
+            "rawDisplayName": "Item_1029_Name",
+            "slot": 5
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Oracle Lens",
+            "itemID": 3364,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3364_Description",
+            "rawDisplayName": "Item_3364_Name",
+            "slot": 6
+          }
+        ],
+        "level": 16,
+        "position": "JUNGLE",
+        "rawChampionName": "game_character_displayname_Volibear",
+        "rawSkinName": "game_character_skin_displayname_Volibear_19",
+        "respawnTimer": 0,
+        "riotId": "Moerak#EUW",
+        "riotIdGameName": "Moerak",
+        "riotIdTagLine": "EUW",
+        "runes": {
+          "keystone": {
+            "displayName": "Lethal Tempo",
+            "id": 8008,
+            "rawDescription": "perk_tooltip_LethalTempo",
+            "rawDisplayName": "perk_displayname_LethalTempo"
+          },
+          "primaryRuneTree": {
+            "displayName": "Precision",
+            "id": 8000,
+            "rawDescription": "perkstyle_tooltip_7201",
+            "rawDisplayName": "perkstyle_displayname_7201"
+          },
+          "secondaryRuneTree": {
+            "displayName": "Inspiration",
+            "id": 8300,
+            "rawDescription": "perkstyle_tooltip_7203",
+            "rawDisplayName": "perkstyle_displayname_7203"
+          }
+        },
+        "scores": {
+          "assists": 5,
+          "creepScore": 200,
+          "deaths": 8,
+          "kills": 6,
+          "wardScore": 30.638580322265625
+        },
+        "screenPositionBottom": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "screenPositionCenter": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "skinID": 19,
+        "skinName": "Inkshadow Volibear",
+        "summonerName": "Moerak#EUW",
+        "summonerSpells": {
+          "summonerSpellOne": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+          },
+          "summonerSpellTwo": {
+            "displayName": "Primal Smite",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerSmiteAvatarUtility_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerSmiteAvatarUtility_DisplayName"
+          }
+        },
+        "team": "CHAOS"
+      },
+      {
+        "championName": "Mel",
+        "isBot": false,
+        "isDead": false,
+        "items": [
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Blackfire Torch",
+            "itemID": 2503,
+            "price": 700,
+            "rawDescription": "GeneratedTip_Item_2503_Description",
+            "rawDisplayName": "Item_2503_Name",
+            "slot": 0
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Doran's Ring",
+            "itemID": 1056,
+            "price": 400,
+            "rawDescription": "GeneratedTip_Item_1056_Description",
+            "rawDisplayName": "Item_1056_Name",
+            "slot": 1
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Liandry's Torment",
+            "itemID": 6653,
+            "price": 800,
+            "rawDescription": "GeneratedTip_Item_6653_Description",
+            "rawDisplayName": "Item_6653_Name",
+            "slot": 2
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Shadowflame",
+            "itemID": 4645,
+            "price": 900,
+            "rawDescription": "GeneratedTip_Item_4645_Description",
+            "rawDisplayName": "Item_4645_Name",
+            "slot": 3
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Needlessly Large Rod",
+            "itemID": 1058,
+            "price": 1200,
+            "rawDescription": "GeneratedTip_Item_1058_Description",
+            "rawDisplayName": "Item_1058_Name",
+            "slot": 4
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Sorcerer's Shoes",
+            "itemID": 3020,
+            "price": 800,
+            "rawDescription": "GeneratedTip_Item_3020_Description",
+            "rawDisplayName": "Item_3020_Name",
+            "slot": 5
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Farsight Alteration",
+            "itemID": 3363,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3363_Description",
+            "rawDisplayName": "Item_3363_Name",
+            "slot": 6
+          }
+        ],
+        "level": 16,
+        "position": "MIDDLE",
+        "rawChampionName": "game_character_displayname_Mel",
+        "rawSkinName": "game_character_skin_displayname_Mel_1",
+        "respawnTimer": 0,
+        "riotId": "Kryo#Frost",
+        "riotIdGameName": "Kryo",
+        "riotIdTagLine": "Frost",
+        "runes": {
+          "keystone": {
+            "displayName": "Arcane Comet",
+            "id": 8229,
+            "rawDescription": "perk_tooltip_ArcaneComet",
+            "rawDisplayName": "perk_displayname_ArcaneComet"
+          },
+          "primaryRuneTree": {
+            "displayName": "Sorcery",
+            "id": 8200,
+            "rawDescription": "perkstyle_tooltip_7202",
+            "rawDisplayName": "perkstyle_displayname_7202"
+          },
+          "secondaryRuneTree": {
+            "displayName": "Precision",
+            "id": 8000,
+            "rawDescription": "perkstyle_tooltip_7201",
+            "rawDisplayName": "perkstyle_displayname_7201"
+          }
+        },
+        "scores": {
+          "assists": 3,
+          "creepScore": 240,
+          "deaths": 5,
+          "kills": 6,
+          "wardScore": 33.743011474609375
+        },
+        "screenPositionBottom": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "screenPositionCenter": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+        "skinID": 1,
+        "skinName": "Arcane Councilor Mel",
+        "summonerName": "Kryo#Frost",
+        "summonerSpells": {
+          "summonerSpellOne": {
+            "displayName": "Unleashed Teleport",
+            "rawDescription": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_DisplayName"
+          },
+          "summonerSpellTwo": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+          }
+        },
+        "team": "CHAOS"
+      },
+      {
+        "championName": "Kog'Maw",
+        "isBot": false,
+        "isDead": false,
+        "items": [
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Doran's Blade",
+            "itemID": 1055,
+            "price": 450,
+            "rawDescription": "GeneratedTip_Item_1055_Description",
+            "rawDisplayName": "Item_1055_Name",
+            "slot": 0
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Runaan's Hurricane",
+            "itemID": 3085,
+            "price": 850,
+            "rawDescription": "GeneratedTip_Item_3085_Description",
+            "rawDisplayName": "Item_3085_Name",
+            "slot": 1
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Guinsoo's Rageblade",
+            "itemID": 3124,
+            "price": 1025,
+            "rawDescription": "GeneratedTip_Item_3124_Description",
+            "rawDisplayName": "Item_3124_Name",
+            "slot": 2
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Berserker's Greaves",
+            "itemID": 3006,
+            "price": 300,
+            "rawDescription": "GeneratedTip_Item_3006_Description",
+            "rawDisplayName": "Item_3006_Name",
+            "slot": 3
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Blade of The Ruined King",
+            "itemID": 3153,
+            "price": 725,
+            "rawDescription": "GeneratedTip_Item_3153_Description",
+            "rawDisplayName": "Item_3153_Name",
+            "slot": 4
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Giant's Belt",
+            "itemID": 1011,
+            "price": 500,
+            "rawDescription": "GeneratedTip_Item_1011_Description",
+            "rawDisplayName": "Item_1011_Name",
+            "slot": 5
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Stealth Ward",
+            "itemID": 3340,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3340_Description",
+            "rawDisplayName": "Item_3340_Name",
+            "slot": 6
+          }
+        ],
+        "level": 15,
+        "position": "BOTTOM",
+        "rawChampionName": "game_character_displayname_KogMaw",
+        "rawSkinName": "game_character_skin_displayname_KogMaw_9",
+        "respawnTimer": 0,
+        "riotId": "Iveg#EUW",
+        "riotIdGameName": "Iveg",
+        "riotIdTagLine": "EUW",
+        "runes": {
+          "keystone": {
+            "displayName": "Lethal Tempo",
+            "id": 8008,
+            "rawDescription": "perk_tooltip_LethalTempo",
+            "rawDisplayName": "perk_displayname_LethalTempo"
+          },
+          "primaryRuneTree": {
+            "displayName": "Precision",
+            "id": 8000,
+            "rawDescription": "perkstyle_tooltip_7201",
+            "rawDisplayName": "perkstyle_displayname_7201"
+          },
+          "secondaryRuneTree": {
+            "displayName": "Resolve",
+            "id": 8400,
+            "rawDescription": "perkstyle_tooltip_7204",
+            "rawDisplayName": "perkstyle_displayname_7204"
+          }
+        },
+        "scores": {
+          "assists": 11,
+          "creepScore": 200,
+          "deaths": 10,
+          "kills": 3,
+          "wardScore": 8.823047637939453
+        },
+        "screenPositionBottom": "1223.7283936,2173.3715820",
+        "screenPositionCenter": "1243.3140869,2018.8696289",
+        "skinID": 9,
+        "skinName": "Pug'Maw",
+        "summonerName": "Iveg#EUW",
+        "summonerSpells": {
+          "summonerSpellOne": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+          },
+          "summonerSpellTwo": {
+            "displayName": "Barrier",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerBarrier_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerBarrier_DisplayName"
+          }
+        },
+        "team": "CHAOS"
+      },
+      {
+        "championName": "Soraka",
+        "isBot": false,
+        "isDead": false,
+        "items": [
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Redemption",
+            "itemID": 3107,
+            "price": 900,
+            "rawDescription": "GeneratedTip_Item_3107_Description",
+            "rawDisplayName": "Item_3107_Name",
+            "slot": 0
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Crystalline Bracer",
+            "itemID": 3801,
+            "price": 100,
+            "rawDescription": "GeneratedTip_Item_3801_Description",
+            "rawDisplayName": "Item_3801_Name",
+            "slot": 1
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Dream Maker",
+            "itemID": 3870,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3870_Description",
+            "rawDisplayName": "Item_3870_Name",
+            "slot": 2
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Giant's Belt",
+            "itemID": 1011,
+            "price": 500,
+            "rawDescription": "GeneratedTip_Item_1011_Description",
+            "rawDisplayName": "Item_1011_Name",
+            "slot": 3
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Ionian Boots of Lucidity",
+            "itemID": 3158,
+            "price": 350,
+            "rawDescription": "GeneratedTip_Item_3158_Description",
+            "rawDisplayName": "Item_3158_Name",
+            "slot": 4
+          },
+          {
+            "canUse": false,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Moonstone Renewer",
+            "itemID": 6617,
+            "price": 500,
+            "rawDescription": "GeneratedTip_Item_6617_Description",
+            "rawDisplayName": "Item_6617_Name",
+            "slot": 5
+          },
+          {
+            "canUse": true,
+            "consumable": false,
+            "count": 1,
+            "displayName": "Oracle Lens",
+            "itemID": 3364,
+            "price": 0,
+            "rawDescription": "GeneratedTip_Item_3364_Description",
+            "rawDisplayName": "Item_3364_Name",
+            "slot": 6
+          }
+        ],
+        "level": 14,
+        "position": "UTILITY",
+        "rawChampionName": "game_character_displayname_Soraka",
+        "rawSkinName": "game_character_skin_displayname_Soraka_16",
+        "respawnTimer": 0,
+        "riotId": "nnyva#777",
+        "riotIdGameName": "nnyva",
+        "riotIdTagLine": "777",
+        "runes": {
+          "keystone": {
+            "displayName": "Guardian",
+            "id": 8465,
+            "rawDescription": "perk_tooltip_Guardian",
+            "rawDisplayName": "perk_displayname_Guardian"
+          },
+          "primaryRuneTree": {
+            "displayName": "Resolve",
+            "id": 8400,
+            "rawDescription": "perkstyle_tooltip_7204",
+            "rawDisplayName": "perkstyle_displayname_7204"
+          },
+          "secondaryRuneTree": {
+            "displayName": "Inspiration",
+            "id": 8300,
+            "rawDescription": "perkstyle_tooltip_7203",
+            "rawDisplayName": "perkstyle_displayname_7203"
+          }
+        },
+        "scores": {
+          "assists": 14,
+          "creepScore": 30,
+          "deaths": 6,
+          "kills": 0,
+          "wardScore": 66.0009765625
+        },
+        "screenPositionBottom": "1662.7341309,1258.8979492",
+        "screenPositionCenter": "1675.8743896,1025.0677490",
+        "skinID": 16,
+        "skinName": "Nightbringer Soraka",
+        "summonerName": "nnyva#777",
+        "summonerSpells": {
+          "summonerSpellOne": {
+            "displayName": "Flash",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+          },
+          "summonerSpellTwo": {
+            "displayName": "Heal",
+            "rawDescription": "GeneratedTip_SummonerSpell_SummonerHeal_Description",
+            "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerHeal_DisplayName"
+          }
+        },
+        "team": "CHAOS"
+      }
+    ],
+    "events": {
+      "Events": [
+        {
+          "EventID": 0,
+          "EventName": "GameStart",
+          "EventTime": 960.35498046875
+        },
+        {
+          "Assisters": [
+            "Iveg",
+            "nnyva"
+          ],
+          "EventID": 1,
+          "EventName": "ChampionKill",
+          "EventTime": 991.4383544921875,
+          "KillerName": "Kryo",
+          "VictimName": "Kulturbanause"
+        },
+        {
+          "Assisters": [],
+          "EventID": 2,
+          "EventName": "ChampionKill",
+          "EventTime": 992.3410034179688,
+          "KillerName": "AABOSS123",
+          "VictimName": "JustPaInKiLLer23"
+        },
+        {
+          "Assisters": [
+            "Kryo",
+            "nnyva"
+          ],
+          "EventID": 3,
+          "EventName": "TurretKilled",
+          "EventTime": 998.389892578125,
+          "KillerName": "Iveg",
+          "TurretKilled": "Turret_TOrder_L0_P3_3795288474"
+        },
+        {
+          "Assisters": [
+            "Artayr",
+            "Hunterzombie17"
+          ],
+          "EventID": 4,
+          "EventName": "ChampionKill",
+          "EventTime": 1000.7142333984375,
+          "KillerName": "Gooch Boy ",
+          "VictimName": "Moerak"
+        },
+        {
+          "Assisters": [
+            "Kulturbanause"
+          ],
+          "EventID": 5,
+          "EventName": "ChampionKill",
+          "EventTime": 1008.380859375,
+          "KillerName": "Artayr",
+          "VictimName": "nnyva"
+        },
+        {
+          "Assisters": [
+            "Gooch Boy "
+          ],
+          "EventID": 6,
+          "EventName": "ChampionKill",
+          "EventTime": 1012.688232421875,
+          "KillerName": "Hunterzombie17",
+          "VictimName": "Iveg"
+        },
+        {
+          "Assisters": [],
+          "EventID": 7,
+          "EventName": "ChampionKill",
+          "EventTime": 1020.3192138671875,
+          "KillerName": "Artayr",
+          "VictimName": "Kryo"
+        },
+        {
+          "Assisters": [],
+          "EventID": 8,
+          "EventName": "ChampionKill",
+          "EventTime": 1021.5488891601562,
+          "KillerName": "Kryo",
+          "VictimName": "Artayr"
+        },
+        {
+          "Assisters": [
+            "Iveg"
+          ],
+          "EventID": 9,
+          "EventName": "ChampionKill",
+          "EventTime": 1029.0335693359375,
+          "KillerName": "AABOSS123",
+          "VictimName": "Hunterzombie17"
+        },
+        {
+          "Assisters": [
+            "Gooch Boy ",
+            "Kulturbanause"
+          ],
+          "EventID": 10,
+          "EventName": "ChampionKill",
+          "EventTime": 1078.474365234375,
+          "KillerName": "JustPaInKiLLer23",
+          "VictimName": "Iveg"
+        },
+        {
+          "Assisters": [
+            "Kulturbanause"
+          ],
+          "EventID": 11,
+          "EventName": "ChampionKill",
+          "EventTime": 1090.237548828125,
+          "KillerName": "JustPaInKiLLer23",
+          "VictimName": "Moerak"
+        },
+        {
+          "Assisters": [
+            "Moerak",
+            "Iveg",
+            "nnyva"
+          ],
+          "EventID": 12,
+          "EventName": "ChampionKill",
+          "EventTime": 1091.5433349609375,
+          "KillerName": "Kryo",
+          "VictimName": "JustPaInKiLLer23"
+        },
+        {
+          "Assisters": [],
+          "EventID": 13,
+          "EventName": "TurretKilled",
+          "EventTime": 1102.7371826171875,
+          "KillerName": "Artayr",
+          "TurretKilled": "Turret_TChaos_L1_P3_2254202041"
+        },
+        {
+          "Assisters": [
+            "Kulturbanause"
+          ],
+          "EventID": 14,
+          "EventName": "ChampionKill",
+          "EventTime": 1104.2069091796875,
+          "KillerName": "Gooch Boy ",
+          "VictimName": "Kryo"
+        },
+        {
+          "Assisters": [],
+          "EventID": 15,
+          "EventName": "ChampionKill",
+          "EventTime": 1139.358154296875,
+          "KillerName": "AABOSS123",
+          "VictimName": "Hunterzombie17"
+        },
+        {
+          "Assisters": [
+            "Hunterzombie17",
+            "Kulturbanause"
+          ],
+          "EventID": 16,
+          "EventName": "ChampionKill",
+          "EventTime": 1200.057861328125,
+          "KillerName": "JustPaInKiLLer23",
+          "VictimName": "Iveg"
+        },
+        {
+          "Assisters": [
+            "nnyva"
+          ],
+          "EventID": 17,
+          "EventName": "TurretKilled",
+          "EventTime": 1208.7186279296875,
+          "KillerName": "AABOSS123",
+          "TurretKilled": "Turret_TOrder_L1_P3_1242677625"
+        },
+        {
+          "Assisters": [],
+          "EventID": 18,
+          "EventName": "TurretKilled",
+          "EventTime": 1219.9259033203125,
+          "KillerName": "Gooch Boy ",
+          "TurretKilled": "Turret_TChaos_L0_P3_511845594"
+        },
+        {
+          "Assisters": [
+            "JustPaInKiLLer23",
+            "Gooch Boy ",
+            "Hunterzombie17",
+            "Kulturbanause"
+          ],
+          "EventID": 19,
+          "EventName": "AtakhanKill",
+          "EventTime": 1233.8265380859375,
+          "KillerName": "Moerak",
+          "Stolen": "True"
+        },
+        {
+          "Assisters": [
+            "JustPaInKiLLer23",
+            "Hunterzombie17",
+            "Kulturbanause"
+          ],
+          "EventID": 20,
+          "EventName": "ChampionKill",
+          "EventTime": 1236.9136962890625,
+          "KillerName": "Gooch Boy ",
+          "VictimName": "Moerak"
+        },
+        {
+          "Assisters": [],
+          "EventID": 21,
+          "EventName": "TurretKilled",
+          "EventTime": 1244.2198486328125,
+          "KillerName": "AABOSS123",
+          "TurretKilled": "Turret_TOrder_L1_P2_1225900006"
+        },
+        {
+          "Assisters": [],
+          "EventID": 22,
+          "EventName": "ChampionKill",
+          "EventTime": 1296.5845947265625,
+          "KillerName": "AABOSS123",
+          "VictimName": "Gooch Boy "
+        },
+        {
+          "Assisters": [
+            "Gooch Boy "
+          ],
+          "EventID": 23,
+          "EventName": "ChampionKill",
+          "EventTime": 1300.6961669921875,
+          "KillerName": "JustPaInKiLLer23",
+          "VictimName": "AABOSS123"
+        },
+        {
+          "Assisters": [
+            "AABOSS123"
+          ],
+          "EventID": 24,
+          "EventName": "ChampionKill",
+          "EventTime": 1303.764404296875,
+          "KillerName": "Moerak",
+          "VictimName": "JustPaInKiLLer23"
+        },
+        {
+          "Assisters": [
+            "Iveg",
+            "nnyva"
+          ],
+          "EventID": 25,
+          "EventName": "ChampionKill",
+          "EventTime": 1309.9400634765625,
+          "KillerName": "Kryo",
+          "VictimName": "Kulturbanause"
+        },
+        {
+          "Assisters": [
+            "Iveg",
+            "nnyva"
+          ],
+          "EventID": 26,
+          "EventName": "TurretKilled",
+          "EventTime": 1340.4136962890625,
+          "KillerName": "Kryo",
+          "TurretKilled": "Turret_TOrder_L0_P2_3812066093"
+        },
+        {
+          "Assisters": [
+            "Artayr",
+            "Kulturbanause"
+          ],
+          "EventID": 27,
+          "EventName": "ChampionKill",
+          "EventTime": 1362.8779296875,
+          "KillerName": "Gooch Boy ",
+          "VictimName": "Iveg"
+        },
+        {
+          "Assisters": [
+            "Kryo",
+            "nnyva"
+          ],
+          "EventID": 28,
+          "EventName": "ChampionKill",
+          "EventTime": 1367.054443359375,
+          "KillerName": "Iveg",
+          "VictimName": "Kulturbanause"
+        },
+        {
+          "Assisters": [],
+          "EventID": 29,
+          "EventName": "ChampionKill",
+          "EventTime": 1406.58349609375,
+          "KillerName": "Gooch Boy ",
+          "VictimName": "Kryo"
+        },
+        {
+          "Assisters": [
+            "Kulturbanause"
+          ],
+          "EventID": 30,
+          "EventName": "ChampionKill",
+          "EventTime": 1456.719482421875,
+          "KillerName": "Hunterzombie17",
+          "VictimName": "nnyva"
+        },
+        {
+          "Assisters": [
+            "AABOSS123"
+          ],
+          "EventID": 31,
+          "EventName": "ChampionKill",
+          "EventTime": 1470.29443359375,
+          "KillerName": "Moerak",
+          "VictimName": "Kulturbanause"
+        },
+        {
+          "Assisters": [],
+          "EventID": 32,
+          "EventName": "TurretKilled",
+          "EventTime": 1488.340087890625,
+          "KillerName": "Artayr",
+          "TurretKilled": "Turret_TChaos_L0_P2_528623213"
+        },
+        {
+          "Assisters": [
+            "Kryo",
+            "Iveg"
+          ],
+          "EventID": 33,
+          "EventName": "ChampionKill",
+          "EventTime": 1491.778076171875,
+          "KillerName": "AABOSS123",
+          "VictimName": "JustPaInKiLLer23"
+        },
+        {
+          "Assisters": [
+            "Iveg"
+          ],
+          "EventID": 34,
+          "EventName": "TurretKilled",
+          "EventTime": 1501.9053955078125,
+          "KillerName": "AABOSS123",
+          "TurretKilled": "Turret_TOrder_L2_P2_1526764315"
+        },
+        {
+          "Assisters": [
+            "Gooch Boy "
+          ],
+          "EventID": 35,
+          "EventName": "ChampionKill",
+          "EventTime": 1527.7554931640625,
+          "KillerName": "Artayr",
+          "VictimName": "Kryo"
+        },
+        {
+          "Assisters": [
+            "Artayr",
+            "Hunterzombie17"
+          ],
+          "EventID": 36,
+          "EventName": "ChampionKill",
+          "EventTime": 1532.26806640625,
+          "KillerName": "Kulturbanause",
+          "VictimName": "Iveg"
+        },
+        {
+          "Assisters": [],
+          "EventID": 37,
+          "EventName": "ChampionKill",
+          "EventTime": 1532.96484375,
+          "KillerName": "Iveg",
+          "VictimName": "Hunterzombie17"
+        },
+        {
+          "Assisters": [
+            "JustPaInKiLLer23",
+            "Artayr",
+            "Kulturbanause"
+          ],
+          "EventID": 38,
+          "EventName": "ChampionKill",
+          "EventTime": 1611.8236083984375,
+          "KillerName": "Hunterzombie17",
+          "VictimName": "Kryo"
+        },
+        {
+          "Assisters": [
+            "Moerak",
+            "nnyva"
+          ],
+          "EventID": 39,
+          "EventName": "ChampionKill",
+          "EventTime": 1644.9708251953125,
+          "KillerName": "AABOSS123",
+          "VictimName": "Kulturbanause"
+        },
+        {
+          "Assisters": [
+            "JustPaInKiLLer23",
+            "Artayr",
+            "Kulturbanause"
+          ],
+          "EventID": 40,
+          "EventName": "ChampionKill",
+          "EventTime": 1651.655517578125,
+          "KillerName": "Gooch Boy ",
+          "VictimName": "Iveg"
+        },
+        {
+          "Assisters": [
+            "JustPaInKiLLer23",
+            "Gooch Boy ",
+            "Hunterzombie17",
+            "Kulturbanause"
+          ],
+          "EventID": 41,
+          "EventName": "ChampionKill",
+          "EventTime": 1652.252685546875,
+          "KillerName": "Artayr",
+          "VictimName": "AABOSS123"
+        },
+        {
+          "Assisters": [
+            "JustPaInKiLLer23",
+            "Artayr",
+            "Kulturbanause"
+          ],
+          "EventID": 42,
+          "EventName": "ChampionKill",
+          "EventTime": 1654.0576171875,
+          "KillerName": "Hunterzombie17",
+          "VictimName": "nnyva"
+        },
+        {
+          "Assisters": [
+            "JustPaInKiLLer23",
+            "Gooch Boy ",
+            "Artayr",
+            "Hunterzombie17"
+          ],
+          "EventID": 43,
+          "EventName": "BaronKill",
+          "EventTime": 1677.4586181640625,
+          "KillerName": "Moerak",
+          "Stolen": "True"
+        },
+        {
+          "Assisters": [
+            "JustPaInKiLLer23",
+            "Artayr",
+            "Hunterzombie17"
+          ],
+          "EventID": 44,
+          "EventName": "ChampionKill",
+          "EventTime": 1679.3870849609375,
+          "KillerName": "Gooch Boy ",
+          "VictimName": "Moerak"
+        },
+        {
+          "Assisters": [],
+          "EventID": 45,
+          "EventName": "ChampionKill",
+          "EventTime": 1753.8446044921875,
+          "KillerName": "Gooch Boy ",
+          "VictimName": "Iveg"
+        },
+        {
+          "Assisters": [],
+          "EventID": 46,
+          "EventName": "ChampionKill",
+          "EventTime": 1762.21337890625,
+          "KillerName": "JustPaInKiLLer23",
+          "VictimName": "AABOSS123"
+        },
+        {
+          "Assisters": [
+            "nnyva"
+          ],
+          "EventID": 47,
+          "EventName": "ChampionKill",
+          "EventTime": 1809.47607421875,
+          "KillerName": "Kryo",
+          "VictimName": "JustPaInKiLLer23"
+        },
+        {
+          "Assisters": [
+            "Moerak",
+            "Iveg"
+          ],
+          "EventID": 48,
+          "EventName": "ChampionKill",
+          "EventTime": 1840.48486328125,
+          "KillerName": "AABOSS123",
+          "VictimName": "Kulturbanause"
+        },
+        {
+          "Assisters": [
+            "Moerak",
+            "nnyva"
+          ],
+          "EventID": 49,
+          "EventName": "TurretKilled",
+          "EventTime": 1885.138916015625,
+          "KillerName": "Iveg",
+          "TurretKilled": "Turret_TOrder_L1_P1_1209122387"
+        },
+        {
+          "Assisters": [
+            "Moerak",
+            "Kryo",
+            "nnyva"
+          ],
+          "EventID": 50,
+          "EventName": "InhibKilled",
+          "EventTime": 1892.154296875,
+          "InhibKilled": "Inhib_TOrder_L1_P1_2786523670",
+          "KillerName": "Iveg"
+        },
+        {
+          "Assisters": [
+            "Kryo",
+            "Iveg",
+            "nnyva"
+          ],
+          "EventID": 51,
+          "EventName": "ChampionKill",
+          "EventTime": 1902.3212890625,
+          "KillerName": "AABOSS123",
+          "VictimName": "JustPaInKiLLer23"
+        },
+        {
+          "Assisters": [
+            "AABOSS123",
+            "Kryo",
+            "nnyva"
+          ],
+          "EventID": 52,
+          "EventName": "ChampionKill",
+          "EventTime": 1905.768310546875,
+          "KillerName": "Iveg",
+          "VictimName": "Gooch Boy "
+        },
+        {
+          "Assisters": [
+            "AABOSS123",
+            "Moerak",
+            "Kryo",
+            "nnyva"
+          ],
+          "EventID": 53,
+          "EventName": "TurretKilled",
+          "EventTime": 1913.7132568359375,
+          "KillerName": "Iveg",
+          "TurretKilled": "Turret_TOrder_L0_P1_3761733236"
+        },
+        {
+          "Assisters": [
+            "AABOSS123",
+            "Kryo",
+            "Iveg"
+          ],
+          "EventID": 54,
+          "EventName": "InhibKilled",
+          "EventTime": 1918.387451171875,
+          "InhibKilled": "Inhib_TOrder_L0_P1_2971077479",
+          "KillerName": "nnyva"
+        },
+        {
+          "Assisters": [
+            "Artayr",
+            "Kulturbanause"
+          ],
+          "EventID": 55,
+          "EventName": "ChampionKill",
+          "EventTime": 1929.0242919921875,
+          "KillerName": "Hunterzombie17",
+          "VictimName": "Moerak"
+        },
+        {
+          "Assisters": [
+            "AABOSS123",
+            "Moerak",
+            "Kryo",
+            "nnyva"
+          ],
+          "EventID": 56,
+          "EventName": "ChampionKill",
+          "EventTime": 1930.6634521484375,
+          "KillerName": "Iveg",
+          "VictimName": "Artayr"
+        },
+        {
+          "Assisters": [
+            "Kryo",
+            "Iveg",
+            "nnyva"
+          ],
+          "EventID": 57,
+          "EventName": "TurretKilled",
+          "EventTime": 1939.3892822265625,
+          "KillerName": "AABOSS123",
+          "TurretKilled": "Turret_TOrder_L1_P4_3675873665"
+        },
+        {
+          "Assisters": [
+            "Iveg",
+            "nnyva"
+          ],
+          "EventID": 58,
+          "EventName": "TurretKilled",
+          "EventTime": 1945.1700439453125,
+          "KillerName": "AABOSS123",
+          "TurretKilled": "Turret_TOrder_L1_P5_3625540808"
+        },
+        {
+          "Assisters": [
+            "Iveg",
+            "nnyva"
+          ],
+          "EventID": 59,
+          "EventName": "ChampionKill",
+          "EventTime": 1947.1610107421875,
+          "KillerName": "Kryo",
+          "VictimName": "Kulturbanause"
+        },
+        {
+          "EventID": 60,
+          "EventName": "InhibRespawned",
+          "EventTime": 1741.5704345703125,
+          "InhibRespawned": "Inhib_TOrder_L1_P1_2786523670"
+        },
+        {
+          "EventID": 61,
+          "EventName": "InhibRespawned",
+          "EventTime": 1741.5704345703125,
+          "InhibRespawned": "Inhib_TOrder_L0_P1_2971077479"
+        },
+        {
+          "Assisters": [],
+          "EventID": 62,
+          "EventName": "ChampionKill",
+          "EventTime": 1754.5704345703125,
+          "KillerName": "Gooch Boy ",
+          "VictimName": "Iveg"
+        },
+        {
+          "Assisters": [],
+          "EventID": 63,
+          "EventName": "ChampionKill",
+          "EventTime": 1762.2135009765625,
+          "KillerName": "JustPaInKiLLer23",
+          "VictimName": "AABOSS123"
+        },
+        {
+          "Assisters": [
+            "nnyva"
+          ],
+          "EventID": 64,
+          "EventName": "ChampionKill",
+          "EventTime": 1809.5906982421875,
+          "KillerName": "Kryo",
+          "VictimName": "JustPaInKiLLer23"
+        },
+        {
+          "Assisters": [
+            "Moerak",
+            "Iveg"
+          ],
+          "EventID": 65,
+          "EventName": "ChampionKill",
+          "EventTime": 1840.484619140625,
+          "KillerName": "AABOSS123",
+          "VictimName": "Kulturbanause"
+        }
+      ]
+    },
+    "gameData": {
+      "gameMode": "CLASSIC",
+      "gameTime": 1841.6981201171875,
+      "mapName": "Map11",
+      "mapNumber": 11,
+      "mapTerrain": "Default"
+    }
+  },
+  "eventType": "LIVE_CLIENT_DATA",
+  "uri": "/liveclientdata/allgamedata",
+  "timestamp": "2025-08-26T17:49:05.865003"
+}

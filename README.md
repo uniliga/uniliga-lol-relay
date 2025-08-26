@@ -170,3 +170,102 @@ In `_recordtest.json` befindet sich der TR Testpickban.
 ## Issues
  - Skins und Summonerspells refreshen nicht die Session, werden also erst geändert sobald etwas anderes die Session refresht.
  - Ban Hovers werden nicht gezeigt.
+
+
+# Live Client Data
+Live Client Data wird von einer Rest API und dann alle x millisekunden über den websocket relay im selben Format wie die anderen Events gepublished. Folgende Daten sind verfügbar:
+ - activePlayer: Beinhaltet Daten zum Spieler, der grade im Spectator ausgewählt ist. Not available in Replays? Aber in Live Spectator? Maybe auch nicht?
+ - allPlayers: Beinhaltet Infos zu allen Spielern. Champion, Spielername, Items, Level, KDA, CS, Keystone Rune, Summoner Spell und noch ein paar andere Dinge. KEINE Ability Cooldowns
+ - events: Beinhalte folgende Events: Champion Kill (inclusive assits), Turret Kill/Respawn, Inhib Kill/Respawn, AtakhanKill, Baron Kill, Multi Kill (ab 3 Kills?). KEIN!!! Dragon Kill. Gibt dazu keine Dokumentation, also evtl. mehr (Ace?, Soul?, Elder?, Herald?, Voidgrubs?)
+
+
+# Player
+```json
+{
+    "championName": "Illaoi",
+    "isBot": false,
+    "isDead": true,
+    "items": [
+        {
+        "canUse": false,
+        "consumable": false,
+        "count": 1,
+        "displayName": "Iceborn Gauntlet",
+        "itemID": 6662,
+        "price": 800,
+        "rawDescription": "GeneratedTip_Item_6662_Description",
+        "rawDisplayName": "Item_6662_Name",
+        "slot": 0
+        },
+        ...
+    ],
+    "level": 17,
+    "position": "TOP",
+    "rawChampionName": "game_character_displayname_Illaoi",
+    "rawSkinName": "game_character_skin_displayname_Illaoi_0",
+    "respawnTimer": 24.31493377685547,
+    "riotId": "JustPaInKiLLer23#EUW",
+    "riotIdGameName": "JustPaInKiLLer23",
+    "riotIdTagLine": "EUW",
+    "runes": {
+        "keystone": {
+        "displayName": "Conqueror",
+        "id": 8010,
+        "rawDescription": "perk_tooltip_Conqueror",
+        "rawDisplayName": "perk_displayname_Conqueror"
+        },
+        "primaryRuneTree": {
+        "displayName": "Precision",
+        "id": 8000,
+        "rawDescription": "perkstyle_tooltip_7201",
+        "rawDisplayName": "perkstyle_displayname_7201"
+        },
+        "secondaryRuneTree": {
+        "displayName": "Sorcery",
+        "id": 8200,
+        "rawDescription": "perkstyle_tooltip_7202",
+        "rawDisplayName": "perkstyle_displayname_7202"
+        }
+    },
+    "scores": {
+        "assists": 6,
+        "creepScore": 240,
+        "deaths": 7,
+        "kills": 7,
+        "wardScore": 22.405691146850586
+    },
+    "screenPositionBottom": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+    "screenPositionCenter": "340282346638528859811704183484516925440.0000000,340282346638528859811704183484516925440.0000000",
+    "skinID": 0,
+    "skinName": "",
+    "summonerName": "JustPaInKiLLer23#EUW",
+    "summonerSpells": {
+        "summonerSpellOne": {
+        "displayName": "Flash",
+        "rawDescription": "GeneratedTip_SummonerSpell_SummonerFlash_Description",
+        "rawDisplayName": "GeneratedTip_SummonerSpell_SummonerFlash_DisplayName"
+        },
+        "summonerSpellTwo": {
+        "displayName": "Unleashed Teleport",
+        "rawDescription": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_Description",
+        "rawDisplayName": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_DisplayName"
+        }
+    },
+    "team": "ORDER"
+}
+```
+
+# Event
+ ```json
+{
+    "Assisters": [
+    "Artayr",
+    "Kulturbanause"
+    ],
+    "EventID": 55,
+    "EventName": "ChampionKill",
+    "EventTime": 1929.0242919921875,
+    "KillerName": "Hunterzombie17",
+    "VictimName": "Moerak"
+}
+ ```

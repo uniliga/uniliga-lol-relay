@@ -11,9 +11,15 @@ import json
 from util import *
 from datetime import datetime
 from replay import initialize_replay_system
+import aiohttp
+import ssl
 
 # Queue for communication between LCU relay and WebSocket server
 data_queue = queue.Queue()
+
+# Live Client API configuration
+LIVE_CLIENT_API_URL = "https://127.0.0.1:2999/liveclientdata/allgamedata"
+LIVE_CLIENT_POLLING_RATE = 0.5  # seconds between polls
 
 async def start_websocket_server():
     """Start the WebSocket server"""
@@ -25,6 +31,48 @@ def start_rest_api():
     """Start the REST API server"""
     print("Starting REST API server on http://localhost:8000")
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+
+async def poll_live_client_api():
+    """Poll the Live Client API and relay data via WebSocket"""
+    # Create SSL context that doesn't verify certificates (for self-signed certs)
+    ssl_context = ssl.create_default_context()
+    ssl_context.check_hostname = False
+    ssl_context.verify_mode = ssl.CERT_NONE
+    
+    connector = aiohttp.TCPConnector(ssl=ssl_context)
+    
+    async with aiohttp.ClientSession(connector=connector) as session:
+        while True:
+            try:
+                async with session.get(LIVE_CLIENT_API_URL, timeout=aiohttp.ClientTimeout(total=5)) as response:
+                    if response.status == 200:
+                        data = await response.json()
+                        
+                        # Add to queue for WebSocket publishing
+                        try:
+                            data_queue.put({
+                                'data': data, 
+                                'eventType': 'LIVE_CLIENT_DATA', 
+                                'uri': '/liveclientdata/allgamedata'
+                            }, block=False)
+                            print("Live Client data queued for WebSocket publishing")
+                        except queue.Full:
+                            print("Queue is full, dropping Live Client data")
+                        except Exception as e:
+                            print(f"Error queuing Live Client data: {e}")
+                    else:
+                        print(f"Live Client API returned status {response.status}")
+                        
+            except aiohttp.ClientError as e:
+                # API not available (game not running)
+                pass
+            except asyncio.TimeoutError:
+                print("Live Client API request timed out")
+            except Exception as e:
+                print(f"Error polling Live Client API: {e}")
+            
+            # Wait before next poll
+            await asyncio.sleep(LIVE_CLIENT_POLLING_RATE)
 
 async def process_data_queue():
     """Process data from the queue and publish via WebSocket"""
@@ -161,9 +209,17 @@ def start_relay():
                 print(f"Error queuing data: {e}")
 
         
-        # @connector.ws.register('/idk', event_types=('UPDATE',))
-        # async def post_game():
-        #     pass
+        @connector.ws.register('/lol-end-of-game/v1/eog-stats-block', event_types=('CREATE',))
+        async def end_of_game_stats():
+            data = event.data.copy() 
+            
+            try:
+                data_queue.put({'data': data, 'eventType': 'CREATE', 'uri': '/lol-end-of-game/v1/eog-stats-block' }, block=False)
+                print("Data queued for WebSocket publishing")
+            except queue.Full:
+                print("Queue is full, dropping data")
+            except Exception as e:
+                print(f"Error queuing data: {e}")
         
         
         @connector.close
@@ -211,12 +267,16 @@ async def main():
     relay_thread = threading.Thread(target=start_relay, daemon=True)
     relay_thread.start()
     
+    # Start Live Client API polling
+    live_client_task = asyncio.create_task(poll_live_client_api())
+    
     print("All services started!")
     print("=" * 60)
     print("WebSocket Server: ws://localhost:8765")
     print("REST API: http://localhost:8000")
     print("API Documentation: http://localhost:8000/docs")
     print("LCU Relay: Monitoring League Client")
+    print("Live Client API Polling: https://127.0.0.1:2999/liveclientdata/allgamedata")
     print("Test Client: Open test_client.html in your browser")
     print("=" * 60)
     print("🎬 REPLAY SYSTEM AVAILABLE:")
@@ -227,57 +287,8 @@ async def main():
     print("=" * 60)
     print("Press Ctrl+C to stop all services")
     
-    # Wait for both tasks (keeps the main thread alive)
-    await asyncio.gather(websocket_task, queue_processor_task)
-
-if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("\nServers shutting down...")
-    except Exception as e:
-        print(f"Error: {e}")
-            
-    except Exception as e:
-        print(f"Error in relay thread: {e}")
-        # If connector.start() didn't close the loop, close it manually
-        if not loop.is_closed():
-            loop.close()
-
-async def main():
-    """Main function to start all services"""
-    print("Starting League of Legends Champion Select Monitor...")
-    print("=" * 60)
-    
-    # Start WebSocket server
-    websocket_task = asyncio.create_task(start_websocket_server())
-    
-    # Start data queue processor
-    queue_processor_task = asyncio.create_task(process_data_queue())
-    
-    # Start REST API in a separate thread
-    api_thread = threading.Thread(target=start_rest_api, daemon=True)
-    api_thread.start()
-    
-    # Wait a moment for servers to start
-    await asyncio.sleep(2)
-    
-    # Start LCU relay in a separate thread
-    relay_thread = threading.Thread(target=start_relay, daemon=True)
-    relay_thread.start()
-    
-    print("All services started!")
-    print("=" * 60)
-    print("WebSocket Server: ws://localhost:8765")
-    print("REST API: http://localhost:8000")
-    print("API Documentation: http://localhost:8000/docs")
-    print("LCU Relay: Monitoring League Client")
-    print("Test Client: Open test_client.html in your browser")
-    print("=" * 60)
-    print("Press Ctrl+C to stop all services")
-    
-    # Wait for both tasks (keeps the main thread alive)
-    await asyncio.gather(websocket_task, queue_processor_task)
+    # Wait for all tasks (keeps the main thread alive)
+    await asyncio.gather(websocket_task, queue_processor_task, live_client_task)
 
 if __name__ == "__main__":
     try:
