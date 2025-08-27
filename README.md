@@ -178,8 +178,15 @@ Live Client Data wird von einer Rest API und dann alle x millisekunden über den
  - allPlayers: Beinhaltet Infos zu allen Spielern. Champion, Spielername, Items, Level, KDA, CS, Keystone Rune, Summoner Spell und noch ein paar andere Dinge. KEINE Ability Cooldowns
  - events: Beinhalte folgende Events: Champion Kill (inclusive assits), Turret Kill/Respawn, Inhib Kill/Respawn, AtakhanKill, Baron Kill, Multi Kill (ab 3 Kills?). KEIN!!! Dragon Kill. Gibt dazu keine Dokumentation, also evtl. mehr (Ace?, Soul?, Elder?, Herald?, Voidgrubs?)
 
+ ## Ideen
+ LED Wall/Licht:
+ - Objectives: Baron, Atakhan, Soul Drake, Elder Drake auf LED Wall/Licht
+ - Items: Legendary Item Buy auf LED Wall
+ - Level: Level 6, 11, 16 auf LED Wall
+ - Win
 
-# Player
+## Player
+items und champions haben images. Runen und Summonerspells könnten das auch bekommen, if u want. Deathtimer können im relay über die `RESPWAN_TIMER_ADJUSTMENT_MS` Variable adjusted werden, um led wall delays zu kompensieren.
 ```json
 {
     "championName": "Illaoi",
@@ -195,7 +202,8 @@ Live Client Data wird von einer Rest API und dann alle x millisekunden über den
         "price": 800,
         "rawDescription": "GeneratedTip_Item_6662_Description",
         "rawDisplayName": "Item_6662_Name",
-        "slot": 0
+        "slot": 0,
+        "itemIDIcon": "https://ddragon.leagueoflegends.com/cdn/15.15.1/img/item/6662.png"
         },
         ...
     ],
@@ -251,11 +259,14 @@ Live Client Data wird von einer Rest API und dann alle x millisekunden über den
         "rawDisplayName": "GeneratedTip_SummonerSpell_S12_SummonerTeleportUpgrade_DisplayName"
         }
     },
-    "team": "ORDER"
+    "team": "ORDER",
+    "championNameIcon": "https://ddragon.leagueoflegends.com/cdn/15.15.1/img/champion/Illaoi.png",
+    "championNameSplash": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Illaoi_0.jpg",
+    "championNameLoading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Illaoi_0.jpg"
 }
 ```
 
-# Event
+## Event
  ```json
 {
     "Assisters": [
@@ -269,3 +280,9 @@ Live Client Data wird von einer Rest API und dann alle x millisekunden über den
     "VictimName": "Moerak"
 }
  ```
+
+# Postgame
+TBD <br>
+https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/statmods/ <br>
+https://raw.communitydragon.org/ <br>
+https://raw.communitydragon.org/15.17/game/assets/perks/styles/domination/electrocute/electrocute.png <br>

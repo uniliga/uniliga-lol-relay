@@ -1,5 +1,6 @@
 DDRAGON_BASE_URL = 'https://ddragon.leagueoflegends.com/cdn/'
 DDRAGON_VERSION = '15.15.1'
+RESPWAN_TIMER_ADJUSTMENT_MS = 300
 
 async def get_summoner_name_by_puuid(connection, puuid):
     if puuid == '':
@@ -17,6 +18,77 @@ async def team_add_names(connection, team):
         new_team.append(player)
 
     return new_team
+
+
+def live_to_url(ent, type):
+    # if type == 'summoner':
+    #     name = summoners_lookup[id]
+    #     url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/img/spell/{name}.png'
+    #     return url
+        
+        
+    if type == 'icon':
+        name = ent
+        url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/img/champion/{name}.png'
+        return url
+    
+    
+    if type == 'splash':
+        skin = 0
+        # if len(id) > 3:
+        #     skin = id[-3:]
+        #     id = id[:-3]
+            
+        # skin = str(int(skin))
+        
+        name = ent
+        url = f'{DDRAGON_BASE_URL}img/champion/splash/{name}_{skin}.jpg'
+        return url
+
+
+    if type == 'loading':
+        skin = 0
+        # if len(id) > 3:
+        #     skin = id[-3:]
+        #     id = id[:-3]
+            
+        # skin = str(int(skin))
+        
+        name = ent
+        url = f'{DDRAGON_BASE_URL}img/champion/loading/{name}_{skin}.jpg'
+        return url
+    
+
+    if type == 'item':
+        id = ent
+        url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/img/item/{id}.png'
+        return url
+        
+        
+    if type == 'rune':
+        pass
+
+
+def live_players_to_url(players):
+    url_players = []
+    for player in players:
+        championName = player.get('championName')
+        player['championNameIcon'] = live_to_url(championName, 'icon')
+        player['championNameSplash'] = live_to_url(championName, 'splash')
+        player['championNameLoading'] = live_to_url(championName, 'loading')
+        player['respawnTimer'] = player.get('respawnTimer') - RESPWAN_TIMER_ADJUSTMENT_MS / 1000
+        url_items = []
+        items = player.get('items')
+        for item in items:
+            itemID = item['itemID']
+            item['itemIDIcon'] = live_to_url(itemID, 'item')
+            
+            url_items.append(item)
+            
+        player['items'] = url_items    
+        url_players.append(player)
+
+    return url_players
 
 
 def id_to_url(id, type):

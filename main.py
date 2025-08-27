@@ -47,6 +47,9 @@ async def poll_live_client_api():
                 async with session.get(LIVE_CLIENT_API_URL, timeout=aiohttp.ClientTimeout(total=5)) as response:
                     if response.status == 200:
                         data = await response.json()
+                        players = data['allPlayers']
+                        url_players = live_players_to_url(players)
+                        data['allplayers'] = url_players
                         
                         # Add to queue for WebSocket publishing
                         try:
