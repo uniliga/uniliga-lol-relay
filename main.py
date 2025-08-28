@@ -49,7 +49,7 @@ async def poll_live_client_api():
                         data = await response.json()
                         players = data['allPlayers']
                         url_players = live_players_to_url(players)
-                        data['allplayers'] = url_players
+                        data['allPlayers'] = url_players
                         
                         # Add to queue for WebSocket publishing
                         try:
@@ -212,9 +212,20 @@ def start_relay():
                 print(f"Error queuing data: {e}")
 
         
-        @connector.ws.register('/lol-end-of-game/v1/eog-stats-block', event_types=('CREATE',))
-        async def end_of_game_stats():
+        @connector.ws.register('/lol-end-of-game/v1/eog-stats-block', event_types=('CREATE','UPDATE'))
+        async def end_of_game_stats(connection, event):
             data = event.data.copy() 
+            print(f'End of Game:{data}')
+            
+            teams = data.get('teams')
+            url_teams = post_teams_to_url(teams)
+            data['teams'] = url_teams
+            
+            
+            # Save raw data to files
+            with open(f'record{record_timestamp}.json', 'a') as file:
+                file.write(json.dumps({'data': data, 'eventType': 'CREATE', 'uri': '/lol-end-of-game/v1/eog-stats-block' }))
+                file.write('\n') 
             
             try:
                 data_queue.put({'data': data, 'eventType': 'CREATE', 'uri': '/lol-end-of-game/v1/eog-stats-block' }, block=False)

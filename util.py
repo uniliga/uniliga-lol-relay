@@ -91,6 +91,41 @@ def live_players_to_url(players):
     return url_players
 
 
+def post_teams_to_url(teams):
+    url_teams = []
+    for team in teams:
+        players = team.get('players')
+        url_players = []
+        for player in players:
+            championName = player.get('championName')
+            player['championNameIcon'] = live_to_url(championName, 'icon')
+            player['championNameSplash'] = live_to_url(championName, 'splash')
+            player['championNameLoading'] = live_to_url(championName, 'loading')
+            
+            item_ids = player.get('items')
+            url_items = []
+            for itemID in item_ids:
+                itemIDIcon = live_to_url(itemID, 'item')
+                
+                item = {
+                    "itemID": itemID,
+                    "itemIDIcon": itemIDIcon
+                }
+                
+                url_items.append(item)
+
+            # TODO urlitems
+        
+            player['patchedItems'] = url_items    
+            url_players.append(player)
+            
+        team['players'] = url_players
+        url_teams.append(team)
+
+
+
+    return url_teams
+
 def id_to_url(id, type):
     # champion icon, splashart?, skin splashart, summoner spells
     if id <= 0 or id == 18446744073709551615:

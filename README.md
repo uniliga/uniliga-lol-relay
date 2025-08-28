@@ -282,7 +282,9 @@ items und champions haben images. Runen und Summonerspells könnten das auch bek
  ```
 
 # Postgame
-TBD <br>
-https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/statmods/ <br>
-https://raw.communitydragon.org/ <br>
-https://raw.communitydragon.org/15.17/game/assets/perks/styles/domination/electrocute/electrocute.png <br>
+See post-game.json. Items und Champions werden mit Image URLs versehen. Replayable via `_recordpostgame.json`
+## Assets
+- Stats: https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/statmods/ <br>
+- Postgame: https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-postgame/global/default/<br>
+- Runes: https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/
+- Matchhistory: https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-match-history/global/default/
