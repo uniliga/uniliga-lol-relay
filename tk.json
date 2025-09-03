@@ -1,0 +1,92 @@
+[
+  {
+    "puuid": "",
+    "riotIdGameName": null,
+    "riotIdTagLine": "",
+    "total_heal": 8325,
+    "total_heal_on_teammates": 0,
+    "total_damage_shielded_on_teammates": 0,
+    "total_damage_self_mitigated": 11421
+  },
+  {
+    "puuid": "",
+    "riotIdGameName": null,
+    "riotIdTagLine": "",
+    "total_heal": 45271,
+    "total_heal_on_teammates": 0,
+    "total_damage_shielded_on_teammates": 0,
+    "total_damage_self_mitigated": 31994
+  },
+  {
+    "puuid": "",
+    "riotIdGameName": null,
+    "riotIdTagLine": "",
+    "total_heal": 13967,
+    "total_heal_on_teammates": 0,
+    "total_damage_shielded_on_teammates": 750,
+    "total_damage_self_mitigated": 20653
+  },
+  {
+    "puuid": "",
+    "riotIdGameName": null,
+    "riotIdTagLine": "",
+    "total_heal": 7598,
+    "total_heal_on_teammates": 0,
+    "total_damage_shielded_on_teammates": 0,
+    "total_damage_self_mitigated": 10026
+  },
+  {
+    "puuid": "",
+    "riotIdGameName": null,
+    "riotIdTagLine": "",
+    "total_heal": 7157,
+    "total_heal_on_teammates": 402,
+    "total_damage_shielded_on_teammates": 1137,
+    "total_damage_self_mitigated": 27608
+  },
+  {
+    "puuid": "0a132b12-5187-5e45-b585-9e783e54c2f9",
+    "riotIdGameName": null,
+    "riotIdTagLine": "",
+    "total_heal": 9465,
+    "total_heal_on_teammates": 0,
+    "total_damage_shielded_on_teammates": 0,
+    "total_damage_self_mitigated": 37382
+  },
+  {
+    "puuid": "37de9ed9-3bca-5cab-8c2e-6c71c8aeacd2",
+    "riotIdGameName": null,
+    "riotIdTagLine": "",
+    "total_heal": 17950,
+    "total_heal_on_teammates": 0,
+    "total_damage_shielded_on_teammates": 0,
+    "total_damage_self_mitigated": 26264
+  },
+  {
+    "puuid": "",
+    "riotIdGameName": null,
+    "riotIdTagLine": "",
+    "total_heal": 1189,
+    "total_heal_on_teammates": 0,
+    "total_damage_shielded_on_teammates": 0,
+    "total_damage_self_mitigated": 9401
+  },
+  {
+    "puuid": "",
+    "riotIdGameName": null,
+    "riotIdTagLine": "",
+    "total_heal": 4944,
+    "total_heal_on_teammates": 1867,
+    "total_damage_shielded_on_teammates": 441,
+    "total_damage_self_mitigated": 10372
+  },
+  {
+    "puuid": "ed17ff25-e183-50e8-9526-5247c090ddef",
+    "riotIdGameName": null,
+    "riotIdTagLine": "",
+    "total_heal": 2861,
+    "total_heal_on_teammates": 1464,
+    "total_damage_shielded_on_teammates": 1148,
+    "total_damage_self_mitigated": 10424
+  }
+]

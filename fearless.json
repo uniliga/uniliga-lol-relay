@@ -1,0 +1,14 @@
+[
+  {
+    "championId": 131,
+    "championIdIcon": "https://ddragon.leagueoflegends.com/cdn/15.15.1/img/champion/Diana.png",
+    "championIdSplash": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Diana_0.jpg",
+    "championIdLoading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Diana_0.jpg"
+  },
+  {
+    "championId": 36,
+    "championIdIcon": "https://ddragon.leagueoflegends.com/cdn/15.15.1/img/champion/DrMundo.png",
+    "championIdSplash": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/DrMundo_0.jpg",
+    "championIdLoading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/DrMundo_0.jpg"
+  }
+]

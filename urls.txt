@@ -1,0 +1,43 @@
+https://overlays.uniliga.gg/7323ef78-71f3-4606-a37c-b04b9961538a/games/lol/ingame_final
+
+
+http://192.168.66.26:58869/ingame/?backendport=58869
+
+@import url ('D:/Sora-Uni-Countdown-Regular.ttf');
+* { 
+font-family: Sora Uni Countdown 
+}
+.team-icon-container {
+opacity: 0
+}
+.gold-advantage {
+font-size: 14px;
+padding-inline: 5px;
+}
+div[data-v-edf4cda4]{
+display: none
+}
+div[data-v-c06efbfa]{
+bottom: 260px;
+}
+.flex.flex-col.absolute.bottom-0.left-0.right-0.transition-transform.duration-500 div{
+background-color: rgba(0,0,0,0);
+}
+p[data-v-de735380] {
+display: none;
+}
+.right__kda{
+left: 2rem !important;
+}
+.left__kda{
+right: 2rem !important;
+}
+div[data-v-542eb978] .relative.overflow-hidden {
+top: 65px;
+}
+div[data-v-5b6b1ab0] .h-full.w-2.absolute.top-0.right-0.bottom-0{
+display:none
+}
+div[data-v-2f73f063] .text-5xl.font-bold.center-vert {
+font-size: 40px
+}

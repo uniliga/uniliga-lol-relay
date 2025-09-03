@@ -313,7 +313,44 @@ def fearless_remove_current(all_champs, current):
         fearless.append(champion)
         
     return fearless
-        
+
+
+def create_tk_data(teams, current_tk):
+    tk_data = []
+    for team in teams:
+        players = team.get('players')
+        for player in players:
+            stats = player.get('stats')
+            total_heal = stats.get('TOTAL_HEAL')
+            total_heal_on_teammates = stats.get('TOTAL_HEAL_ON_TEAMMATES')
+            total_damage_shielded_on_teammates = stats.get('TOTAL_DAMAGE_SHIELDED_ON_TEAMMATES')
+            total_damage_self_mitigated = stats.get('TOTAL_DAMAGE_SELF_MITIGATED')
+            
+            puuid = player.get('puuid')
+            riotIdGameName = player.get('roitIdGameName')
+            riotIdTagLine = player.get('riotIdTagLine')
+            if current_tk:
+                for player_tk in current_tk:
+                    puuid_tk = player_tk.get('puuid')
+                    if puuid == puuid_tk:
+                        total_heal += player_tk.get('TOTAL_HEAL')
+                        total_heal_on_teammates += player_tk.get('TOTAL_HEAL_ON_TEAMMATES')
+                        total_damage_shielded_on_teammates += player_tk.get('TOTAL_DAMAGE_SHIELDED_ON_TEAMMATES')
+                        total_damage_self_mitigated += player_tk.get('TOTAL_DAMAGE_SELF_MITIGATED')
+                
+                
+            tk = {
+                "puuid": puuid,
+                "riotIdGameName": riotIdGameName,
+                "riotIdTagLine": riotIdTagLine,
+                "total_heal": total_heal,
+                "total_heal_on_teammates": total_heal_on_teammates,
+                "total_damage_shielded_on_teammates": total_damage_shielded_on_teammates,
+                "total_damage_self_mitigated": total_damage_self_mitigated
+            }
+            tk_data.append(tk)
+            
+    return tk_data
 
 
 champions_url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/champion.json'

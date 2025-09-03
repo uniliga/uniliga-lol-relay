@@ -222,6 +222,19 @@ def start_relay():
             data['teams'] = url_teams
             
             
+            
+            tk = []
+            if os.path.exists('tk.json'):
+                with open('tk.json', 'r', encoding='utf-8') as file:
+                    tk = json.load(file)
+                    
+            tk = create_tk_data(teams, tk)
+            data['tk'] = tk
+            
+            with open('tk.json', 'w', encoding='utf-8') as file:
+                json.dump(tk, file, indent=2, ensure_ascii=False)
+            
+            
             # Save raw data to files
             with open(f'record{record_timestamp}.json', 'a') as file:
                 file.write(json.dumps({'data': data, 'eventType': 'CREATE', 'uri': '/lol-end-of-game/v1/eog-stats-block' }))
