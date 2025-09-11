@@ -1,6 +1,6 @@
 DDRAGON_BASE_URL = 'https://ddragon.leagueoflegends.com/cdn/'
 DDRAGON_VERSION = '15.15.1'
-RESPWAN_TIMER_ADJUSTMENT_MS = 300
+RESPWAN_TIMER_ADJUSTMENT_MS = 0
 
 async def get_summoner_name_by_puuid(connection, puuid):
     if puuid == '':
@@ -263,7 +263,7 @@ def bans_to_url(bans):
     return ban_objects
 
 
-def get_all_champions(actions):
+def get_all_champions(actions, teams):
     champions = []
     for action in actions:
         for sub_action in action:
@@ -274,13 +274,20 @@ def get_all_champions(actions):
                     splash = id_to_url(champion, 'splash')
                     loading = id_to_url(champion, 'loading')
                     
-                    champion_obj = {
-                        "championId": champion,
-                        "championIdIcon": icon,
-                        "championIdSplash": splash,
-                        "championIdLoading": loading,
-                    }
-                    champions.append(champion_obj)
+                    for player in teams:
+                        if player.get('championId') == champion:
+                            cellId = player.get('cellId')
+
+                            champion_obj = {
+                                "cellId": cellId,
+                                "championId": champion,
+                                "championIdIcon": icon,
+                                "championIdSplash": splash,
+                                "championIdLoading": loading,
+                            }
+                            champions.append(champion_obj)
+                            continue
+                    
             
         
     return champions

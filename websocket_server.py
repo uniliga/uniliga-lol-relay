@@ -5,7 +5,7 @@ from datetime import datetime
 from typing import Set, Optional
 
 class WebSocketServer:
-    def __init__(self, host='localhost', port=8765):
+    def __init__(self, host='', port=8765):
         self.host = host
         self.port = port
         self.clients: Set[websockets.WebSocketServerProtocol] = set()
@@ -55,7 +55,7 @@ class WebSocketServer:
         for client in disconnected_clients:
             await self.unregister(client)
     
-    async def handle_client(self, websocket, path):
+    async def handle_client(self, websocket, path=None):
         """Handle a new client connection"""
         await self.register(websocket)
         try:

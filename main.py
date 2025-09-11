@@ -151,8 +151,8 @@ def start_relay():
                 with open('fearless.json', 'r', encoding='utf-8') as file:
                     fearless = json.load(file)
             print(fearless)
-            
-            champions = get_all_champions(data.get('actions'))
+            teams = data.get('myTeam') + data.get('theirTeam')
+            champions = get_all_champions(data.get('actions'), teams)
             print(champions)
             
             combined_champions = champions + fearless
