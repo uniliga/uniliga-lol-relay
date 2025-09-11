@@ -142,18 +142,20 @@ Die relevantesten Punkte der Pick Ban Data:
 ```
 
 ## Fearless
-Enthält alle Champions, die vorher gepickt wurden. Wird in fearless.json gespeichert, kann gelöscht werden wenn ein neues BoX startet
+Enthält alle Champions, die vorher gepickt wurden. Wird in fearless.json gespeichert, kann gelöscht werden wenn ein neues BoX startet. cellId gibt an wer den Champion gepickt hat (0,5 = TOP; 1,6 = JGL...)
 ```json
 {
     ...,
     "fearless": [
         {
+            "cellId": 0,
             "championId": 1,
             "championIdIcon": "https://ddragon.leagueoflegends.com/cdn/15.15.1/img/champion/Annie.png",
             "championIdSplash": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Annie_0.jpg",
             "championIdLoading": "https://ddragon.leagueoflegends.com/cdn/img/champion/loading/Annie_0.jpg"
         },
         {
+            "cellId": 5,
             "championId": 53,
             "championIdIcon": "https://ddragon.leagueoflegends.com/cdn/15.15.1/img/champion/Blitzcrank.png",
             "championIdSplash": "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Blitzcrank_0.jpg",
