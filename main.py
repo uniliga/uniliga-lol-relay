@@ -199,9 +199,13 @@ def start_relay():
             #     if data['bans'].get('theirTeamBans'):
             #         theirTeamBans = bans_to_url(data.get('bans').get('theirTeamBans'))
             #         data['bans']['theirTeamBans'] = theirTeamBans
-            bans = handle_bans(data.get('actions'))
+            myTeamSize = len(myTeam)
+            print(myTeamSize)
+            bans = handle_bans(data.get('actions'), myTeamSize)
             print(bans)
             data['bans'] = bans
+            print('-----------------------------------')
+            print(bans)
             
             # Save mutated data
             with open('sessiondumpurls.json', 'a') as file:

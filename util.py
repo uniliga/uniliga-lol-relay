@@ -292,16 +292,19 @@ def get_all_champions(actions, teams):
         
     return champions
 
-def handle_bans(actions):
+print()
+def handle_bans(actions, myTeamSize):
     myTeamBans = []
     theirTeamBans = []
     numBans = 0
     for action in actions:
+        
         for sub_action in action:
-            if sub_action['type'] == 'ban' and sub_action['actorCellId'] < 5 and sub_action['championId'] != 0:
+            print(sub_action['actorCellId'])
+            if sub_action['type'] == 'ban' and sub_action['actorCellId'] < myTeamSize and sub_action['championId'] != 0:
                 myTeamBans.append(sub_action['championId'])
                 numBans += 1
-            if sub_action['type'] == 'ban' and sub_action['actorCellId'] >= 5 and sub_action['championId'] != 0:
+            if sub_action['type'] == 'ban' and sub_action['actorCellId'] >= myTeamSize and sub_action['championId'] != 0:
                 theirTeamBans.append(sub_action['championId'])
                 numBans += 1
             
