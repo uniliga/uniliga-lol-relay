@@ -5,3 +5,6 @@ champion.json
 griddump.json
 summoner.json
 events
+/build
+/dist
+main.spec

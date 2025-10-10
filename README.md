@@ -1,4 +1,5 @@
 # Getting Started
+
 ```bash
 pip install -r requirements.txt
 py main.py
@@ -6,9 +7,22 @@ py main.py
 
 Die Datei `test_client.html` kann ohne Abhängigkeiten im Browser geöffnet werden und beinhaltet eine Steuerung für Replays und Websocket und REST API Beispiele.
 
+Um einen neuen Build zu bauen:
+
+```bash
+pip install pyinstaller
+```
+
+```bash
+pyinstaller --onefile main.py
+```
+
+Neuer build wird in /dist gebaut.
+
 # Events
 
 Events werden über Webosckets gepublished und haben folgendes Format:
+
 ```json
 {
     "data": {...},
@@ -22,14 +36,17 @@ Events werden über Webosckets gepublished und haben folgendes Format:
     "timestamp": "2025-08-14T14:16:40.975517"
 }
 ```
+
 - data sind die daten selbst, siehe unten
 - eventType gibt an ob geupdatet, gelöscht... wird atm gibt es nur updates, heißt daten können einfach überschrieben werden.
 - uri gibt den typ des events an (interne url)
-- _replay (optional) gibt an ob es sich um ein replay handelt und ggf. timestamps dazu
+- \_replay (optional) gibt an ob es sich um ein replay handelt und ggf. timestamps dazu
 - timestamp gibt den zeitpunkt des events an
 
 ## Pick Ban
+
 Die relevantesten Punkte der Pick Ban Data:
+
 ```json
    {
         ...,
@@ -142,7 +159,9 @@ Die relevantesten Punkte der Pick Ban Data:
 ```
 
 ## Fearless
+
 Enthält alle Champions, die vorher gepickt wurden. Wird in fearless.json gespeichert, kann gelöscht werden wenn ein neues BoX startet. cellId gibt an wer den Champion gepickt hat (0,5 = TOP; 1,6 = JGL...)
+
 ```json
 {
     ...,
@@ -167,28 +186,35 @@ Enthält alle Champions, die vorher gepickt wurden. Wird in fearless.json gespei
 ```
 
 ## Examples
+
 In `_recordtest.json` befindet sich der TR Testpickban.
 
 ## Issues
- - Skins und Summonerspells refreshen nicht die Session, werden also erst geändert sobald etwas anderes die Session refresht.
- - Ban Hovers werden nicht gezeigt.
 
+- Skins und Summonerspells refreshen nicht die Session, werden also erst geändert sobald etwas anderes die Session refresht.
+- Ban Hovers werden nicht gezeigt.
 
 # Live Client Data
-Live Client Data wird von einer Rest API und dann alle x millisekunden über den websocket relay im selben Format wie die anderen Events gepublished. Folgende Daten sind verfügbar:
- - activePlayer: Beinhaltet Daten zum Spieler, der grade im Spectator ausgewählt ist. Not available in Replays? Aber in Live Spectator? Maybe auch nicht?
- - allPlayers: Beinhaltet Infos zu allen Spielern. Champion, Spielername, Items, Level, KDA, CS, Keystone Rune, Summoner Spell und noch ein paar andere Dinge. KEINE Ability Cooldowns
- - events: Beinhalte folgende Events: Champion Kill (inclusive assits), Turret Kill/Respawn, Inhib Kill/Respawn, AtakhanKill, Baron Kill, Multi Kill (ab 3 Kills?). KEIN!!! Dragon Kill. Gibt dazu keine Dokumentation, also evtl. mehr (Ace?, Soul?, Elder?, Herald?, Voidgrubs?)
 
- ## Ideen
- LED Wall/Licht:
- - Objectives: Baron, Atakhan, Soul Drake, Elder Drake auf LED Wall/Licht
- - Items: Legendary Item Buy auf LED Wall
- - Level: Level 6, 11, 16 auf LED Wall
- - Win
+Live Client Data wird von einer Rest API und dann alle x millisekunden über den websocket relay im selben Format wie die anderen Events gepublished. Folgende Daten sind verfügbar:
+
+- activePlayer: Beinhaltet Daten zum Spieler, der grade im Spectator ausgewählt ist. Not available in Replays? Aber in Live Spectator? Maybe auch nicht?
+- allPlayers: Beinhaltet Infos zu allen Spielern. Champion, Spielername, Items, Level, KDA, CS, Keystone Rune, Summoner Spell und noch ein paar andere Dinge. KEINE Ability Cooldowns
+- events: Beinhalte folgende Events: Champion Kill (inclusive assits), Turret Kill/Respawn, Inhib Kill/Respawn, AtakhanKill, Baron Kill, Multi Kill (ab 3 Kills?). KEIN!!! Dragon Kill. Gibt dazu keine Dokumentation, also evtl. mehr (Ace?, Soul?, Elder?, Herald?, Voidgrubs?)
+
+## Ideen
+
+LED Wall/Licht:
+
+- Objectives: Baron, Atakhan, Soul Drake, Elder Drake auf LED Wall/Licht
+- Items: Legendary Item Buy auf LED Wall
+- Level: Level 6, 11, 16 auf LED Wall
+- Win
 
 ## Player
+
 items und champions haben images. Runen und Summonerspells könnten das auch bekommen, if u want. Deathtimer können im relay über die `RESPWAN_TIMER_ADJUSTMENT_MS` Variable adjusted werden, um led wall delays zu kompensieren.
+
 ```json
 {
     "championName": "Illaoi",
@@ -269,23 +295,24 @@ items und champions haben images. Runen und Summonerspells könnten das auch bek
 ```
 
 ## Event
- ```json
+
+```json
 {
-    "Assisters": [
-    "Artayr",
-    "Kulturbanause"
-    ],
-    "EventID": 55,
-    "EventName": "ChampionKill",
-    "EventTime": 1929.0242919921875,
-    "KillerName": "Hunterzombie17",
-    "VictimName": "Moerak"
+  "Assisters": ["Artayr", "Kulturbanause"],
+  "EventID": 55,
+  "EventName": "ChampionKill",
+  "EventTime": 1929.0242919921875,
+  "KillerName": "Hunterzombie17",
+  "VictimName": "Moerak"
 }
- ```
+```
 
 # Postgame
+
 See post-game.json. Items und Champions werden mit Image URLs versehen. Replayable via `_recordpostgame.json`
+
 ## Assets
+
 - Stats: https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/statmods/ <br>
 - Postgame: https://raw.communitydragon.org/latest/plugins/rcp-fe-lol-postgame/global/default/<br>
 - Runes: https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/perk-images/styles/
