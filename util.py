@@ -263,7 +263,7 @@ def bans_to_url(bans):
     return ban_objects
 
 
-def get_all_champions(actions, teams):
+def get_all_champions(actions):
     champions = []
     for action in actions:
         for sub_action in action:
@@ -274,20 +274,13 @@ def get_all_champions(actions, teams):
                     splash = id_to_url(champion, 'splash')
                     loading = id_to_url(champion, 'loading')
                     
-                    for player in teams:
-                        if player.get('championId') == champion:
-                            cellId = player.get('cellId')
-
-                            champion_obj = {
-                                "cellId": cellId,
-                                "championId": champion,
-                                "championIdIcon": icon,
-                                "championIdSplash": splash,
-                                "championIdLoading": loading,
-                            }
-                            champions.append(champion_obj)
-                            continue
-                    
+                    champion_obj = {
+                        "championId": champion,
+                        "championIdIcon": icon,
+                        "championIdSplash": splash,
+                        "championIdLoading": loading,
+                    }
+                    champions.append(champion_obj)
             
         
     return champions

@@ -41,3 +41,15 @@ display:none
 div[data-v-2f73f063] .text-5xl.font-bold.center-vert {
 font-size: 40px
 }
+
+
+
+http://192.168.178.45:58869/api/gamecamera/sequence/play/intro {}
+
+http://192.168.178.45:58869/api/ingame/showing {"scoreboard": true,   "tabs": true,   "scoreboardBottom": true,   "baronPitTimer": true,   "dragonPitTimer": true,   "atakhanTimer": true,   "inhibitors": true,   "goldGraph": false,   "runes": false }
+
+http://192.168.178.45:58869/api/ingame/showing {"scoreboard": true,   "tabs": true,   "scoreboardBottom": false,   "baronPitTimer": true,   "dragonPitTimer": true,   "atakhanTimer": true,   "inhibitors": true,   "goldGraph": false,   "runes": true }
+
+http://192.168.178.45:58869/api/ingame/showing {   "scoreboard": true,   "tabs": true,   "scoreboardBottom": false,   "baronPitTimer": true,   "dragonPitTimer": true,   "atakhanTimer": true,   "inhibitors": true,   "goldGraph": false,   "runes": false }
+
+http://192.168.178.45:58869/api/ingame/showing {   "scoreboard": true,   "tabs": true,   "scoreboardBottom": false,   "baronPitTimer": true,   "dragonPitTimer": true,   "atakhanTimer": true,   "inhibitors": true,   "goldGraph": true,   "runes": false }
