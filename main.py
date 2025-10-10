@@ -152,7 +152,8 @@ def start_relay():
                     fearless = json.load(file)
             print(fearless)
             
-            champions = get_all_champions(data.get('actions'))
+            teams = data.get('myTeam') + data.get('theirTeam')
+            champions = get_all_champions(data.get('actions'), teams)
             print(champions)
             
             combined_champions = champions + fearless
@@ -188,15 +189,20 @@ def start_relay():
             
             
             # Handle bans
-            if data.get('bans'):
-                if data['bans'].get('myTeamBans'):
-                    myTeamBans = bans_to_url(data.get('bans').get('myTeamBans'))
-                    data['bans']['myTeamBans'] = myTeamBans
+            # print(data)
+            # if data.get('bans'):
+            #     print(data['bans'])
+            #     if data['bans'].get('myTeamBans'):
+            #         myTeamBans = bans_to_url(data.get('bans').get('myTeamBans'))
+            #         data['bans']['myTeamBans'] = myTeamBans
                 
-                if data['bans'].get('theirTeamBans'):
-                    theirTeamBans = bans_to_url(data.get('bans').get('theirTeamBans'))
-                    data['bans']['theirTeamBans'] = theirTeamBans
-
+            #     if data['bans'].get('theirTeamBans'):
+            #         theirTeamBans = bans_to_url(data.get('bans').get('theirTeamBans'))
+            #         data['bans']['theirTeamBans'] = theirTeamBans
+            bans = handle_bans(data.get('actions'))
+            print(bans)
+            data['bans'] = bans
+            
             # Save mutated data
             with open('sessiondumpurls.json', 'a') as file:
                 file.write(json.dumps({'data': data, 'eventType': 'UPDATE', 'uri': '/lol-champ-select/v1/session' }))

@@ -263,7 +263,7 @@ def bans_to_url(bans):
     return ban_objects
 
 
-def get_all_champions(actions):
+def get_all_champions(actions, teams):
     champions = []
     for action in actions:
         for sub_action in action:
@@ -274,16 +274,47 @@ def get_all_champions(actions):
                     splash = id_to_url(champion, 'splash')
                     loading = id_to_url(champion, 'loading')
                     
-                    champion_obj = {
-                        "championId": champion,
-                        "championIdIcon": icon,
-                        "championIdSplash": splash,
-                        "championIdLoading": loading,
-                    }
-                    champions.append(champion_obj)
+                    for player in teams:
+                        if player.get('championId') == champion:
+                            cellId = player.get('cellId')
+                            champion_obj = {
+                                "cellId": cellId,
+                                "championId": champion,
+                                "championIdIcon": icon,
+                                "championIdSplash": splash,
+                                "championIdLoading": loading,
+                            }
+
+                            champions.append(champion_obj)
+
+                            continue
             
         
     return champions
+
+def handle_bans(actions):
+    myTeamBans = []
+    theirTeamBans = []
+    numBans = 0
+    for action in actions:
+        for sub_action in action:
+            if sub_action['type'] == 'ban' and sub_action['actorCellId'] < 5 and sub_action['championId'] != 0:
+                myTeamBans.append(sub_action['championId'])
+                numBans += 1
+            if sub_action['type'] == 'ban' and sub_action['actorCellId'] >= 5 and sub_action['championId'] != 0:
+                theirTeamBans.append(sub_action['championId'])
+                numBans += 1
+            
+    myTeamBans = bans_to_url(myTeamBans)
+    theirTeamBans = bans_to_url(theirTeamBans)
+    
+    bans = {
+        "myTeamBans": myTeamBans,
+        "numBans": numBans,
+        "theirTeamBans": theirTeamBans
+    }
+    
+    return bans
     
 def fearless_unique(champions):
     seen = []
