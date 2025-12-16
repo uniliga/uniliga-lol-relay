@@ -1,5 +1,5 @@
 DDRAGON_BASE_URL = 'https://ddragon.leagueoflegends.com/cdn/'
-DDRAGON_VERSION = '15.15.1'
+DDRAGON_VERSION = '15.24.1'
 RESPWAN_TIMER_ADJUSTMENT_MS = 0
 
 async def get_summoner_name_by_puuid(connection, puuid):
