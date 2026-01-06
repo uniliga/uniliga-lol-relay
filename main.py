@@ -315,6 +315,11 @@ async def main():
     print("LCU Relay: Monitoring League Client")
     print("Live Client API Polling: https://127.0.0.1:2999/liveclientdata/allgamedata")
     print("Test Client: Open test_client.html in your browser")
+    try:
+        latest_ddragon = get_latest_ddragon_version()
+    except Exception:
+        latest_ddragon = DDRAGON_VERSION
+    print(f"DDRAGON version in use: {DDRAGON_VERSION} (latest available: {latest_ddragon})")
     print("=" * 60)
     print("🎬 REPLAY SYSTEM AVAILABLE:")
     print("- Load replay: POST /replay/load")
@@ -323,9 +328,10 @@ async def main():
     print("- Replay status: GET /replay/status")
     print("=" * 60)
     print("Press Ctrl+C to stop all services")
-    
+
     # Wait for all tasks (keeps the main thread alive)
     await asyncio.gather(websocket_task, queue_processor_task, live_client_task)
+    print("=" * 60)
 
 if __name__ == "__main__":
     try:
