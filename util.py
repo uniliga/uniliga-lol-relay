@@ -2,6 +2,10 @@ DDRAGON_BASE_URL = 'https://ddragon.leagueoflegends.com/cdn/'
 DDRAGON_VERSION = '15.24.1'
 RESPWAN_TIMER_ADJUSTMENT_MS = 0
 
+import requests
+import os
+
+
 async def get_summoner_name_by_puuid(connection, puuid):
     if puuid == '':
         return 'boot'
@@ -169,9 +173,35 @@ def id_to_url(id, type):
         return url
 
 
+# load .env if python-dotenv is installed (optional)
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except Exception:
+    pass
 
-import requests
-import os
+# allow overriding defaults via environment variables
+_env_base = os.getenv('DDRAGON_BASE_URL')
+if _env_base:
+    DDRAGON_BASE_URL = _env_base
+
+_env_ver = os.getenv('DDRAGON_VERSION')
+# if DDRAGON_VERSION is provided and not 'latest', use it; 'latest' will trigger a fetch
+if _env_ver and _env_ver.lower() != 'latest':
+    DDRAGON_VERSION = _env_ver
+
+def get_latest_ddragon_version():
+    """Return the latest ddragon version (first entry from versions.json). Fallback to DDRAGON_VERSION on error."""
+    try:
+        resp = requests.get('https://ddragon.leagueoflegends.com/api/versions.json', timeout=5)
+        resp.raise_for_status()
+        versions = resp.json()
+        if isinstance(versions, list) and versions:
+            return versions[0]
+    except requests.RequestException:
+        # network/error -> fallback
+        pass
+    return DDRAGON_VERSION
 
 def download_json(url, folder, filename):
     try:
@@ -200,11 +230,19 @@ def download_json(url, folder, filename):
 # download_json('https://api.example.com/data', 'my_folder', 'data.json')
     
 def startup_download():
-    # Get the summoner data
+    # If DDRAGON_VERSION is 'latest' or not set, fetch the latest version
+    env_ver = os.getenv('DDRAGON_VERSION')
+    if env_ver is None or env_ver == '' or env_ver.lower() == 'latest':
+        latest_version = get_latest_ddragon_version()
+        global DDRAGON_VERSION
+        DDRAGON_VERSION = latest_version
+
     champion = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/champion.json'
     summoner = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/summoner.json'
-    download_json(champion, '.', 'champion.json')
-    download_json(summoner, '.', 'summoner.json')
+    # download and return lookups (summoner first to keep previous ordering)
+    champ_lookup = download_json(champion, '.', 'champion.json')
+    summ_lookup = download_json(summoner, '.', 'summoner.json')
+    return summ_lookup, champ_lookup
 
 def json_to_lookup(data, data_key):
     lookup_table = {}
@@ -387,10 +425,6 @@ def create_tk_data(teams, current_tk):
     return tk_data
 
 
-champions_url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/champion.json'
-summoners_url = f'{DDRAGON_BASE_URL}{DDRAGON_VERSION}/data/en_US/summoner.json'
-    
-summoners_lookup = download_json(summoners_url, '.', 'summoner.json')
-champions_lookup = download_json(champions_url, '.', 'champion.json')
-puuid_lookup={}
+summoners_lookup, champions_lookup = startup_download()
+puuid_lookup = {}
 
