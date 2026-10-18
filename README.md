@@ -160,7 +160,21 @@ Die relevantesten Punkte der Pick Ban Data:
 
 ## Fearless
 
-Enthält alle Champions, die vorher gepickt wurden. Wird in fearless.json gespeichert, kann gelöscht werden wenn ein neues BoX startet. cellId gibt an wer den Champion gepickt hat (0,5 = TOP; 1,6 = JGL...)
+Enthält alle Champions, die vorher gepickt wurden. Wird in fearless.json gespeichert. cellId gibt an wer den Champion gepickt hat (0,5 = TOP; 1,6 = JGL...), bei manuell hinzugefügten Champions ist sie `null`.
+
+### Fearless Steuerung (für Producer)
+
+Im Browser `http://localhost:8000/fearless/ui` öffnen. Dort kann man:
+
+- die Liste zurücksetzen (neue BoX)
+- einzelne Champions per Klick entfernen
+- Champions per Suche hinzufügen
+
+Jede Änderung wird sofort ans Overlay geschickt (das letzte Champ Select Event wird mit neuer `fearless` Liste erneut gebroadcastet). Hinweis: Champions, die im laufenden Draft gepickt sind, werden beim nächsten Update automatisch wieder hinzugefügt.
+
+REST API dazu: `GET /fearless`, `POST /fearless` (`{"championId": 103}`), `DELETE /fearless/{championId}`, `DELETE /fearless` (Reset), `GET /fearless/champions`.
+
+Für einen PyInstaller Build muss die Seite mit eingepackt werden: `pyinstaller --onefile --add-data "fearless.html;." main.py`
 
 ```json
 {

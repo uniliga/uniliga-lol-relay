@@ -216,7 +216,7 @@ def download_json(url, folder, filename):
         file_path = os.path.join(folder, filename)
 
         # Write the JSON data to a file
-        with open(file_path, 'w') as json_file:
+        with open(file_path, 'w', encoding='utf-8') as json_file:
             json_file.write(response.text)
 
         return json_to_lookup(response.json()['data'], 'key')

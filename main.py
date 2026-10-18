@@ -2,7 +2,7 @@ import asyncio
 import os
 import uvicorn
 from websocket_server import ws_server
-from api_server import app, set_replay_system
+from api_server import app, set_replay_system, set_data_queue
 import threading
 import time
 import queue
@@ -13,6 +13,7 @@ from datetime import datetime
 from replay import initialize_replay_system
 import aiohttp
 import ssl
+import fearless
 
 # Queue for communication between LCU relay and WebSocket server
 data_queue = queue.Queue()
@@ -88,6 +89,7 @@ async def process_data_queue():
             while not data_queue.empty():
                 try:
                     data = data_queue.get_nowait()
+                    fearless.remember_event(data)
                     await ws_server.broadcast(data)
                     print("Data published via WebSocket")
                 except queue.Empty:
@@ -146,25 +148,11 @@ def start_relay():
                 data['theirTeam'] = theirTeam
             
             # Fearless
-            fearless = []
-            if os.path.exists('fearless.json'):
-                with open('fearless.json', 'r', encoding='utf-8') as file:
-                    fearless = json.load(file)
-            print(fearless)
-            
             teams = data.get('myTeam') + data.get('theirTeam')
             champions = get_all_champions(data.get('actions'), teams)
             print(champions)
-            
-            combined_champions = champions + fearless
-            combined_champions_unique = fearless_unique(combined_champions)
-            
-            
-            with open('fearless.json', 'w', encoding='utf-8') as file:
-                json.dump(combined_champions_unique, file, indent=2, ensure_ascii=False)
-            
-            
-            fearless_wo = fearless_remove_current(combined_champions_unique, champions)
+
+            fearless_wo = fearless.merge_picks(champions)
             print(fearless_wo)
             data['fearless'] = fearless_wo
             
@@ -285,6 +273,7 @@ async def main():
     # Initialize replay system
     replay_system = initialize_replay_system(data_queue)
     set_replay_system(replay_system)  # Set it in the API module
+    set_data_queue(data_queue)
     print("Replay system initialized")
     
     # Start WebSocket server
@@ -312,6 +301,7 @@ async def main():
     print("WebSocket Server: ws://localhost:8765")
     print("REST API: http://localhost:8000")
     print("API Documentation: http://localhost:8000/docs")
+    print("Fearless UI: http://localhost:8000/fearless/ui")
     print("LCU Relay: Monitoring League Client")
     print("Live Client API Polling: https://127.0.0.1:2999/liveclientdata/allgamedata")
     print("Test Client: Open test_client.html in your browser")

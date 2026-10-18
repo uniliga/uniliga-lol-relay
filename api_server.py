@@ -1,10 +1,14 @@
 from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from websocket_server import ws_server
 import asyncio
 from typing import Optional
 from pydantic import BaseModel
+import os
+import queue
+import fearless
 
 # We'll get the replay system from a global variable set by main.py
 _replay_system = None
@@ -17,6 +21,14 @@ def set_replay_system(replay_system):
 def get_replay_system():
     """Get the replay system instance"""
     return _replay_system
+
+# Queue shared with main.py, events put here get broadcast via WebSocket
+_data_queue = None
+
+def set_data_queue(data_queue):
+    """Set the queue used to publish events"""
+    global _data_queue
+    _data_queue = data_queue
 
 app = FastAPI(title="League of Legends Champion Select API", version="1.0.0")
 
@@ -38,6 +50,9 @@ class ReplayRequest(BaseModel):
 
 class ReplaySpeedRequest(BaseModel):
     speed: float
+
+class FearlessAddRequest(BaseModel):
+    championId: int
 
 @app.get("/")
 async def root():
@@ -107,6 +122,60 @@ async def get_bans():
         "myTeamBans": bans.get("myTeamBans", []),
         "theirTeamBans": bans.get("theirTeamBans", [])
     }
+
+# Fearless endpoints
+def publish_fearless():
+    """Re-broadcast the last champ select session with the updated fearless list"""
+    event = fearless.session_event_with_current_fearless()
+    if event is None or _data_queue is None:
+        return False
+    try:
+        _data_queue.put(event, block=False)
+    except queue.Full:
+        return False
+    return True
+
+def fearless_response():
+    return {"fearless": fearless.load(), "published": publish_fearless()}
+
+@app.get("/fearless")
+async def get_fearless():
+    """Get all champions stored for the current fearless series"""
+    return {"fearless": fearless.load()}
+
+@app.get("/fearless/champions")
+async def get_fearless_champions():
+    """List all champions (for the fearless UI search)"""
+    return {"champions": fearless.all_champions()}
+
+@app.get("/fearless/ui")
+async def get_fearless_ui():
+    """Producer UI to edit the fearless list"""
+    return FileResponse(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fearless.html'))
+
+@app.post("/fearless")
+async def add_fearless(request: FearlessAddRequest):
+    """Manually add a champion to the fearless list"""
+    try:
+        added = fearless.add(request.championId)
+    except KeyError:
+        raise HTTPException(status_code=404, detail=f"Unknown champion: {request.championId}")
+    if not added:
+        raise HTTPException(status_code=409, detail="Champion is already in the fearless list")
+    return fearless_response()
+
+@app.delete("/fearless/{champion_id}")
+async def remove_fearless(champion_id: int):
+    """Remove a single champion from the fearless list"""
+    if not fearless.remove(champion_id):
+        raise HTTPException(status_code=404, detail="Champion is not in the fearless list")
+    return fearless_response()
+
+@app.delete("/fearless")
+async def reset_fearless():
+    """Clear the fearless list (new series)"""
+    fearless.reset()
+    return fearless_response()
 
 # Replay endpoints
 @app.get("/replay/status")
