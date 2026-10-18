@@ -121,14 +121,14 @@ HTML = r"""<!DOCTYPE html>
 </head>
 <body>
     <header>
-        <h1>Fearless Steuerung</h1>
+        <h1>Fearless</h1>
         <div id="status">Lade…</div>
     </header>
 
     <div class="container">
         <header>
             <h2>Gesperrte Champions <span class="count" id="count"></span></h2>
-            <button class="danger" onclick="resetFearless()">Neue Serie / Reset</button>
+            <button class="danger" onclick="resetFearless()">Reset</button>
         </header>
         <div class="grid" id="fearless"></div>
         <div class="legend">
@@ -264,7 +264,7 @@ HTML = r"""<!DOCTYPE html>
         }
 
         async function resetFearless() {
-            if (!confirm('Alle gesperrten Champions löschen und eine neue Serie starten?')) return;
+            if (!confirm('Reset?')) return;
             try {
                 const data = await request('DELETE', '/fearless');
                 apply(data);
