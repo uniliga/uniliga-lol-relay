@@ -160,30 +160,42 @@ Die relevantesten Punkte der Pick Ban Data:
 
 ## Fearless
 
-Enthält alle Champions, die vorher gepickt wurden. Wird in fearless.json gespeichert. cellId gibt an wer den Champion gepickt hat (0,5 = TOP; 1,6 = JGL...), bei manuell hinzugefügten Champions ist sie `null`.
+Enthält alle Champions, die vorher gepickt wurden. Wird in fearless.json gespeichert. cellId gibt an auf welchem Draft-Platz der Champion gepickt wurde: 0–4 Blue Side, 5–9 Red Side, jeweils TOP, JGL, MID, BOT, SUPP (0,5 = TOP; 1,6 = JGL...). Das Overlay (`champselect_live_data`) ordnet die Champions nur über die cellId zu, Einträge ohne gültige cellId werden dort nicht angezeigt.
+
+Champions des laufenden Drafts werden aus `fearless` herausgefiltert, das Overlay zeigt also nur Picks aus vorherigen Games.
 
 ### Fearless Steuerung (für Producer)
 
-Im Browser `http://localhost:8000/fearless/ui` öffnen. Dort kann man:
+Im Browser `http://localhost:8000/fearless/ui` öffnen. Die Seite ist aufgebaut wie das Overlay (Spalte = Rolle, Zeile = Team). Dort kann man:
 
 - die Liste zurücksetzen (neue BoX)
-- einzelne Champions per Klick entfernen
-- Champions per Suche hinzufügen
+- einzelne Champions über das ✕ entfernen
+- Champions hinzufügen: Feld (Team + Rolle) anklicken, dann Champion suchen und anklicken (oder Enter)
+- Champions per Drag & Drop in ein anderes Feld verschieben, auch Einträge ohne Zuordnung
 
-Jede Änderung wird sofort ans Overlay geschickt (das letzte Champ Select Event wird mit neuer `fearless` Liste erneut gebroadcastet). Hinweis: Champions, die im laufenden Draft gepickt sind, werden beim nächsten Update automatisch wieder hinzugefügt.
+Jede Änderung wird sofort ans Overlay geschickt, sofern es seit dem Start schon ein Champ Select Event gab (das letzte Champ Select Event wird mit neuer `fearless` Liste erneut gebroadcastet). Hinweis: Champions, die im laufenden Draft gepickt sind, werden beim nächsten Update automatisch wieder hinzugefügt.
 
-Zum Testen ohne Champ Select gibt es den Button „Ans Overlay senden“ (`POST /fearless/publish`). Gab es noch kein Champ Select Event, wird ein minimales Session Event gesendet, das nur `fearless` enthält (kein `myTeam`, `theirTeam`, `bans`...), das Overlay muss fehlende Felder also vertragen:
+Zum Testen ohne Champ Select gibt es den Button „Ans Overlay senden“ (`POST /fearless/publish`). Gab es noch kein Champ Select Event, wird ein leeres Session Event gesendet (leerer Draft, aber alle Felder die das Overlay liest):
 
 ```json
 {
-    "data": { "fearless": [...] },
+    "data": {
+        "actions": [],
+        "bans": { "myTeamBans": [], "numBans": 0, "theirTeamBans": [] },
+        "myTeam": [],
+        "theirTeam": [],
+        "timer": { "adjustedTimeLeftInPhase": 0, "isInfinite": false, "phase": "", "totalTimeInPhase": 0 },
+        "fearless": [...]
+    },
     "eventType": "UPDATE",
     "uri": "/lol-champ-select/v1/session",
     "_manual": true
 }
 ```
 
-REST API dazu: `GET /fearless`, `POST /fearless` (`{"championId": 103}`), `DELETE /fearless/{championId}`, `DELETE /fearless` (Reset), `POST /fearless/publish`, `GET /fearless/champions`.
+Replays (test_client) spielen `fearless` so ab, wie es aufgenommen wurde, und ändern fearless.json nicht. Ältere Recordings (z.B. `_recordtest.json`) enthalten kein `fearless`.
+
+REST API dazu: `GET /fearless`, `POST /fearless` (`{"championId": 103, "cellId": 2}`), `PATCH /fearless/{championId}` (`{"cellId": 7}`), `DELETE /fearless/{championId}`, `DELETE /fearless` (Reset), `POST /fearless/publish`, `GET /fearless/champions`.
 
 Die Seite liegt in `fearless_ui.py` (HTML als String), damit sie ohne extra Flags im PyInstaller Build landet.
 

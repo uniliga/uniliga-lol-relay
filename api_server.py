@@ -5,7 +5,7 @@ import uvicorn
 from websocket_server import ws_server
 import asyncio
 from typing import Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import queue
 import fearless
 import fearless_ui
@@ -51,8 +51,13 @@ class ReplayRequest(BaseModel):
 class ReplaySpeedRequest(BaseModel):
     speed: float
 
+# cellId is the draft slot: 0-4 blue side, 5-9 red side (top, jgl, mid, bot, supp)
 class FearlessAddRequest(BaseModel):
     championId: int
+    cellId: int = Field(ge=0, le=9)
+
+class FearlessCellRequest(BaseModel):
+    cellId: int = Field(ge=0, le=9)
 
 @app.get("/")
 async def root():
@@ -170,11 +175,18 @@ async def get_fearless_ui():
 async def add_fearless(request: FearlessAddRequest):
     """Manually add a champion to the fearless list"""
     try:
-        added = fearless.add(request.championId)
+        added = fearless.add(request.championId, request.cellId)
     except KeyError:
         raise HTTPException(status_code=404, detail=f"Unknown champion: {request.championId}")
     if not added:
         raise HTTPException(status_code=409, detail="Champion is already in the fearless list")
+    return fearless_response()
+
+@app.patch("/fearless/{champion_id}")
+async def move_fearless(champion_id: int, request: FearlessCellRequest):
+    """Assign a champion in the fearless list to another slot (team + role)"""
+    if not fearless.set_cell(champion_id, request.cellId):
+        raise HTTPException(status_code=404, detail="Champion is not in the fearless list")
     return fearless_response()
 
 @app.delete("/fearless/{champion_id}")

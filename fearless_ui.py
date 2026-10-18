@@ -67,38 +67,67 @@ HTML = r"""<!DOCTYPE html>
             cursor: pointer;
         }
         .champ img { width: 64px; height: 64px; border-radius: 4px; display: block; }
-        .champ.blue { border-color: #2f80ed; }
-        .champ.red { border-color: #c0392b; }
-        .champ.manual { border-color: #c8aa6e; border-style: dashed; }
+        .board {
+            display: grid;
+            grid-template-columns: 70px repeat(5, minmax(0, 1fr));
+            gap: 8px;
+            align-items: stretch;
+        }
+        .board .role, .board .side {
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .board .side.blue { color: #5aa0ff; }
+        .board .side.red { color: #ff6b5b; }
+        .slot {
+            min-height: 92px;
+            padding: 6px;
+            border-radius: 6px;
+            background-color: #1e2328;
+            border: 2px solid #2b2f36;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            align-content: flex-start;
+            cursor: pointer;
+        }
+        .slot.blue { border-color: #24456f; }
+        .slot.red { border-color: #6b2620; }
+        .slot.target { border-color: #c8aa6e; box-shadow: 0 0 0 2px #c8aa6e inset; }
+        .slot.drop { background-color: #463714; }
+        .slot .champ { padding: 2px; background: none; }
+        .slot .champ img, .unassigned .champ img { width: 48px; height: 48px; }
+        .unassigned {
+            margin-top: 16px;
+            padding: 10px;
+            border: 2px dashed #c8aa6e;
+            border-radius: 6px;
+        }
+        .unassigned p { margin: 0 0 8px; font-size: 13px; color: #c8aa6e; }
+        .unassigned .list { display: flex; flex-wrap: wrap; gap: 6px; }
+        .hint { font-size: 13px; color: #a09b8c; margin: 0 0 12px; }
+        .target-label { color: #c8aa6e; }
+        .champ[draggable=true] { cursor: grab; }
         .champ .remove {
             position: absolute;
-            top: 2px;
-            right: 2px;
-            width: 22px;
-            height: 22px;
+            top: -4px;
+            right: -4px;
+            width: 20px;
+            height: 20px;
+            padding: 0;
             border-radius: 50%;
             background-color: #c0392b;
             color: #f0e6d2;
-            font-size: 14px;
-            line-height: 22px;
+            font-size: 12px;
+            line-height: 20px;
         }
-        .champ:hover .remove { background-color: #e74c3c; }
+        .champ .remove:hover { background-color: #e74c3c; }
         .result:hover { border-color: #c8aa6e; }
         .result.taken { opacity: 0.3; cursor: not-allowed; }
-        .legend { display: flex; gap: 16px; font-size: 12px; margin-top: 12px; flex-wrap: wrap; }
-        .legend span::before {
-            content: '';
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            margin-right: 6px;
-            border: 2px solid;
-            border-radius: 2px;
-            vertical-align: -1px;
-        }
-        .legend .l-blue::before { border-color: #2f80ed; }
-        .legend .l-red::before { border-color: #c0392b; }
-        .legend .l-manual::before { border-color: #c8aa6e; border-style: dashed; }
         .empty { grid-column: 1 / -1; color: #a09b8c; font-style: italic; }
         input[type=search] {
             width: 100%;
@@ -134,16 +163,16 @@ HTML = r"""<!DOCTYPE html>
                 <button class="danger" onclick="resetFearless()">Reset</button>
             </div>
         </header>
-        <div class="grid" id="fearless"></div>
-        <div class="legend">
-            <span class="l-blue">Blue Side Pick</span>
-            <span class="l-red">Red Side Pick</span>
-            <span class="l-manual">Manuell hinzugefügt</span>
+        <p class="hint">Aufbau wie im Overlay: Spalte = Rolle, Zeile = Team. Feld anklicken, um es als Ziel zum Hinzufügen zu wählen. Champions per Drag &amp; Drop in ein anderes Feld verschieben.</p>
+        <div class="board" id="board"></div>
+        <div class="unassigned" id="unassigned" hidden>
+            <p>Ohne Zuordnung – im Overlay nicht sichtbar. In ein Feld ziehen, um sie zuzuordnen.</p>
+            <div class="list" id="unassignedList"></div>
         </div>
     </div>
 
     <div class="container">
-        <h2>Champion hinzufügen</h2>
+        <h2>Champion hinzufügen zu <span class="target-label" id="targetLabel"></span></h2>
         <input type="search" id="search" placeholder="Champion suchen… (Enter fügt den ersten Treffer hinzu)" autocomplete="off">
         <div class="grid" id="results"></div>
     </div>
@@ -152,6 +181,15 @@ HTML = r"""<!DOCTYPE html>
         const API = window.location.origin;
         let fearless = [];
         let champions = [];
+        let targetCell = 0;
+        let dragging = false;
+
+        const ROLES = ['Top', 'Jgl', 'Mid', 'Bot', 'Supp'];
+
+        // cellId = draft slot: 0-4 blue side, 5-9 red side, role = cellId % 5
+        function slotName(cellId) {
+            return `${cellId < 5 ? 'Blue' : 'Red'} ${ROLES[cellId % 5]}`;
+        }
 
         function setStatus(text, kind = '') {
             const el = document.getElementById('status');
@@ -182,28 +220,78 @@ HTML = r"""<!DOCTYPE html>
             return champ ? champ.name : String(championId);
         }
 
-        function sideClass(cellId) {
-            if (cellId === null || cellId === undefined) return 'manual';
-            return cellId < 5 ? 'blue' : 'red';
+        function champTile(champ) {
+            const el = document.createElement('div');
+            el.className = 'champ';
+            el.draggable = true;
+            el.title = nameFor(champ.championId);
+            el.innerHTML = `<img src="${champ.championIdIcon}" alt=""><button class="remove" title="Entfernen">✕</button>`;
+            el.querySelector('.remove').onclick = event => {
+                event.stopPropagation();
+                removeChampion(champ.championId);
+            };
+            el.ondragstart = event => {
+                dragging = true;
+                event.dataTransfer.setData('text/plain', String(champ.championId));
+            };
+            el.ondragend = () => { dragging = false; };
+            return el;
+        }
+
+        function slotElement(cellId) {
+            const slot = document.createElement('div');
+            slot.className = `slot ${cellId < 5 ? 'blue' : 'red'}${cellId === targetCell ? ' target' : ''}`;
+            slot.title = `${slotName(cellId)} als Ziel wählen`;
+            for (const champ of fearless.filter(c => c.cellId === cellId)) {
+                slot.appendChild(champTile(champ));
+            }
+            slot.onclick = () => selectTarget(cellId);
+            slot.ondragover = event => { event.preventDefault(); slot.classList.add('drop'); };
+            slot.ondragleave = () => slot.classList.remove('drop');
+            slot.ondrop = event => {
+                event.preventDefault();
+                slot.classList.remove('drop');
+                dragging = false;
+                moveChampion(Number(event.dataTransfer.getData('text/plain')), cellId);
+            };
+            return slot;
         }
 
         function renderFearless() {
-            const grid = document.getElementById('fearless');
             document.getElementById('count').textContent = `(${fearless.length})`;
-            grid.innerHTML = '';
-            if (fearless.length === 0) {
-                grid.innerHTML = '<div class="empty">Noch keine Champions gesperrt.</div>';
-                return;
-            }
-            for (const champ of fearless) {
+            document.getElementById('targetLabel').textContent = slotName(targetCell);
+
+            const board = document.getElementById('board');
+            board.innerHTML = '<div></div>';
+            for (const role of ROLES) {
                 const el = document.createElement('div');
-                el.className = `champ ${sideClass(champ.cellId)}`;
-                el.title = `${nameFor(champ.championId)} entfernen`;
-                el.innerHTML = `<img src="${champ.championIdIcon}" alt=""><span></span><div class="remove">✕</div>`;
-                el.querySelector('span').textContent = nameFor(champ.championId);
-                el.onclick = () => removeChampion(champ.championId);
-                grid.appendChild(el);
+                el.className = 'role';
+                el.textContent = role;
+                board.appendChild(el);
             }
+            for (const [side, offset] of [['blue', 0], ['red', 5]]) {
+                const label = document.createElement('div');
+                label.className = `side ${side}`;
+                label.textContent = side;
+                board.appendChild(label);
+                for (let role = 0; role < 5; role++) {
+                    board.appendChild(slotElement(offset + role));
+                }
+            }
+
+            // Entries without a valid slot (old fearless.json) never show up in the overlay
+            const unassigned = fearless.filter(c => typeof c.cellId !== 'number' || c.cellId < 0 || c.cellId > 9);
+            const list = document.getElementById('unassignedList');
+            list.innerHTML = '';
+            unassigned.forEach(champ => list.appendChild(champTile(champ)));
+            document.getElementById('unassigned').hidden = unassigned.length === 0;
+        }
+
+        function selectTarget(cellId) {
+            targetCell = cellId;
+            renderFearless();
+            renderResults();
+            document.getElementById('search').focus();
         }
 
         function searchMatches() {
@@ -220,7 +308,7 @@ HTML = r"""<!DOCTYPE html>
                 const taken = takenIds.has(champ.championId);
                 const el = document.createElement('div');
                 el.className = `champ result${taken ? ' taken' : ''}`;
-                el.title = taken ? 'Bereits gesperrt' : `${champ.name} hinzufügen`;
+                el.title = taken ? 'Bereits gesperrt' : `${champ.name} zu ${slotName(targetCell)} hinzufügen`;
                 el.innerHTML = `<img src="${champ.championIdIcon}" alt=""><span></span>`;
                 el.querySelector('span').textContent = champ.name;
                 if (!taken) el.onclick = () => addChampion(champ.championId);
@@ -235,6 +323,8 @@ HTML = r"""<!DOCTYPE html>
         }
 
         async function refresh() {
+            // Re-rendering mid drag would cancel it
+            if (dragging) return;
             try {
                 apply(await request('GET', '/fearless'));
                 if (document.getElementById('status').className === 'error') setStatus('Verbunden');
@@ -245,9 +335,9 @@ HTML = r"""<!DOCTYPE html>
 
         async function addChampion(championId) {
             try {
-                const data = await request('POST', '/fearless', { championId });
+                const data = await request('POST', '/fearless', { championId, cellId: targetCell });
                 apply(data);
-                setStatus(`${nameFor(championId)} hinzugefügt. ${publishedText(data.published)}`, 'ok');
+                setStatus(`${nameFor(championId)} zu ${slotName(targetCell)} hinzugefügt. ${publishedText(data.published)}`, 'ok');
                 const search = document.getElementById('search');
                 search.value = '';
                 search.focus();
@@ -267,12 +357,23 @@ HTML = r"""<!DOCTYPE html>
             }
         }
 
+        async function moveChampion(championId, cellId) {
+            if (fearless.some(c => c.championId === championId && c.cellId === cellId)) return;
+            try {
+                const data = await request('PATCH', `/fearless/${championId}`, { cellId });
+                apply(data);
+                setStatus(`${nameFor(championId)} nach ${slotName(cellId)} verschoben. ${publishedText(data.published)}`, 'ok');
+            } catch (e) {
+                setStatus(`Fehler: ${e.message}`, 'error');
+            }
+        }
+
         async function publishFearless() {
             try {
                 const data = await request('POST', '/fearless/publish');
                 apply(data);
                 setStatus(data.manual
-                    ? 'Ans Overlay gesendet (ohne Champ Select, nur fearless)'
+                    ? 'Ans Overlay gesendet (ohne Champ Select, leerer Draft)'
                     : 'Ans Overlay gesendet (letztes Champ Select Event)', 'ok');
             } catch (e) {
                 setStatus(`Fehler: ${e.message}`, 'error');

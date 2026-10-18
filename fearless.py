@@ -50,17 +50,30 @@ def champion_entry(champion_id, cell_id=None):
     }
 
 
-def add(champion_id):
-    """Add a champion manually. Returns False if it is unknown or already in the list"""
+def add(champion_id, cell_id):
+    """Add a champion manually. Raises KeyError if unknown, returns False if already in the list"""
     if str(champion_id) not in util.champions_lookup:
         raise KeyError(champion_id)
     with _lock:
         champions = _read()
         if any(c.get('championId') == champion_id for c in champions):
             return False
-        champions.append(champion_entry(champion_id))
+        champions.append(champion_entry(champion_id, cell_id))
         _write(champions)
     return True
+
+
+def set_cell(champion_id, cell_id):
+    """Move a champion to another slot (cellId). Returns False if it is not in the list"""
+    with _lock:
+        champions = _read()
+        found = False
+        for champion in champions:
+            if champion.get('championId') == champion_id:
+                champion['cellId'] = cell_id
+                found = True
+        _write(champions)
+    return found
 
 
 def remove(champion_id):
@@ -113,9 +126,17 @@ def session_event_with_current_fearless():
 
 
 def manual_event():
-    """Minimal champ select event that only carries the fearless list, for testing without champ select"""
+    """Empty champ select event that carries the fearless list, for testing without champ select.
+    Has all fields the overlay reads (bans, teams, timer, actions), just empty."""
     return {
-        'data': {'fearless': load()},
+        'data': {
+            'actions': [],
+            'bans': {'myTeamBans': [], 'numBans': 0, 'theirTeamBans': []},
+            'myTeam': [],
+            'theirTeam': [],
+            'timer': {'adjustedTimeLeftInPhase': 0, 'isInfinite': False, 'phase': '', 'totalTimeInPhase': 0},
+            'fearless': load(),
+        },
         'eventType': 'UPDATE',
         'uri': SESSION_URI,
         '_manual': True,
