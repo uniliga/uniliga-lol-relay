@@ -1,14 +1,14 @@
 from fastapi import FastAPI, HTTPException, BackgroundTasks
-from fastapi.responses import FileResponse
+from fastapi.responses import HTMLResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from websocket_server import ws_server
 import asyncio
 from typing import Optional
 from pydantic import BaseModel
-import os
 import queue
 import fearless
+import fearless_ui
 
 # We'll get the replay system from a global variable set by main.py
 _replay_system = None
@@ -148,10 +148,10 @@ async def get_fearless_champions():
     """List all champions (for the fearless UI search)"""
     return {"champions": fearless.all_champions()}
 
-@app.get("/fearless/ui")
+@app.get("/fearless/ui", response_class=HTMLResponse)
 async def get_fearless_ui():
     """Producer UI to edit the fearless list"""
-    return FileResponse(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'fearless.html'))
+    return fearless_ui.HTML
 
 @app.post("/fearless")
 async def add_fearless(request: FearlessAddRequest):

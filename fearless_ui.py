@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+# Producer UI for the fearless list, served at /fearless/ui.
+# Kept as a Python module so PyInstaller bundles it without extra --add-data flags.
+
+HTML = r"""<!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
@@ -295,3 +298,4 @@
     </script>
 </body>
 </html>
+"""

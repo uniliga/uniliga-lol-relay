@@ -174,7 +174,7 @@ Jede Änderung wird sofort ans Overlay geschickt (das letzte Champ Select Event 
 
 REST API dazu: `GET /fearless`, `POST /fearless` (`{"championId": 103}`), `DELETE /fearless/{championId}`, `DELETE /fearless` (Reset), `GET /fearless/champions`.
 
-Für einen PyInstaller Build muss die Seite mit eingepackt werden: `pyinstaller --onefile --add-data "fearless.html;." main.py`
+Die Seite liegt in `fearless_ui.py` (HTML als String), damit sie ohne extra Flags im PyInstaller Build landet.
 
 ```json
 {
