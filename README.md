@@ -172,7 +172,18 @@ Im Browser `http://localhost:8000/fearless/ui` öffnen. Dort kann man:
 
 Jede Änderung wird sofort ans Overlay geschickt (das letzte Champ Select Event wird mit neuer `fearless` Liste erneut gebroadcastet). Hinweis: Champions, die im laufenden Draft gepickt sind, werden beim nächsten Update automatisch wieder hinzugefügt.
 
-REST API dazu: `GET /fearless`, `POST /fearless` (`{"championId": 103}`), `DELETE /fearless/{championId}`, `DELETE /fearless` (Reset), `GET /fearless/champions`.
+Zum Testen ohne Champ Select gibt es den Button „Ans Overlay senden“ (`POST /fearless/publish`). Gab es noch kein Champ Select Event, wird ein minimales Session Event gesendet, das nur `fearless` enthält (kein `myTeam`, `theirTeam`, `bans`...), das Overlay muss fehlende Felder also vertragen:
+
+```json
+{
+    "data": { "fearless": [...] },
+    "eventType": "UPDATE",
+    "uri": "/lol-champ-select/v1/session",
+    "_manual": true
+}
+```
+
+REST API dazu: `GET /fearless`, `POST /fearless` (`{"championId": 103}`), `DELETE /fearless/{championId}`, `DELETE /fearless` (Reset), `POST /fearless/publish`, `GET /fearless/champions`.
 
 Die Seite liegt in `fearless_ui.py` (HTML als String), damit sie ohne extra Flags im PyInstaller Build landet.
 

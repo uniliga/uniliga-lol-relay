@@ -94,7 +94,8 @@ def all_champions():
 def remember_event(event):
     """Called for every published event, keeps the last champ select session"""
     global _last_session_event
-    if event.get('uri') == SESSION_URI:
+    # Manually sent events must not replace the real session
+    if event.get('uri') == SESSION_URI and not event.get('_manual'):
         _last_session_event = event
 
 
@@ -109,3 +110,13 @@ def session_event_with_current_fearless():
     current_picks = util.get_all_champions(data.get('actions') or [], teams)
     data['fearless'] = util.fearless_remove_current(load(), current_picks)
     return event
+
+
+def manual_event():
+    """Minimal champ select event that only carries the fearless list, for testing without champ select"""
+    return {
+        'data': {'fearless': load()},
+        'eventType': 'UPDATE',
+        'uri': SESSION_URI,
+        '_manual': True,
+    }

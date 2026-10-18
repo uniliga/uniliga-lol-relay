@@ -124,9 +124,7 @@ async def get_bans():
     }
 
 # Fearless endpoints
-def publish_fearless():
-    """Re-broadcast the last champ select session with the updated fearless list"""
-    event = fearless.session_event_with_current_fearless()
+def queue_event(event):
     if event is None or _data_queue is None:
         return False
     try:
@@ -135,8 +133,23 @@ def publish_fearless():
         return False
     return True
 
+def publish_fearless():
+    """Re-broadcast the last champ select session with the updated fearless list"""
+    return queue_event(fearless.session_event_with_current_fearless())
+
 def fearless_response():
     return {"fearless": fearless.load(), "published": publish_fearless()}
+
+@app.post("/fearless/publish")
+async def publish_fearless_manually():
+    """Send the fearless list to the overlay now, with a minimal session event if there was no champ select yet"""
+    event = fearless.session_event_with_current_fearless()
+    manual = event is None
+    if manual:
+        event = fearless.manual_event()
+    if not queue_event(event):
+        raise HTTPException(status_code=503, detail="Could not queue event for the overlay")
+    return {"fearless": fearless.load(), "published": True, "manual": manual}
 
 @app.get("/fearless")
 async def get_fearless():

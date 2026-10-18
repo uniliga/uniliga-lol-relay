@@ -44,6 +44,7 @@ HTML = r"""<!DOCTYPE html>
         }
         button:hover { background-color: #f0e6d2; }
         button.danger { background-color: #c0392b; color: #f0e6d2; }
+        .actions { display: flex; gap: 10px; flex-wrap: wrap; }
         button.danger:hover { background-color: #e74c3c; }
         .count { color: #c8aa6e; font-weight: normal; }
         .grid {
@@ -128,7 +129,10 @@ HTML = r"""<!DOCTYPE html>
     <div class="container">
         <header>
             <h2>Gesperrte Champions <span class="count" id="count"></span></h2>
-            <button class="danger" onclick="resetFearless()">Reset</button>
+            <div class="actions">
+                <button onclick="publishFearless()">Ans Overlay senden</button>
+                <button class="danger" onclick="resetFearless()">Reset</button>
+            </div>
         </header>
         <div class="grid" id="fearless"></div>
         <div class="legend">
@@ -258,6 +262,18 @@ HTML = r"""<!DOCTYPE html>
                 const data = await request('DELETE', `/fearless/${championId}`);
                 apply(data);
                 setStatus(`${nameFor(championId)} entfernt. ${publishedText(data.published)}`, 'ok');
+            } catch (e) {
+                setStatus(`Fehler: ${e.message}`, 'error');
+            }
+        }
+
+        async function publishFearless() {
+            try {
+                const data = await request('POST', '/fearless/publish');
+                apply(data);
+                setStatus(data.manual
+                    ? 'Ans Overlay gesendet (ohne Champ Select, nur fearless)'
+                    : 'Ans Overlay gesendet (letztes Champ Select Event)', 'ok');
             } catch (e) {
                 setStatus(`Fehler: ${e.message}`, 'error');
             }
